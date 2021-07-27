@@ -1,15 +1,32 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+# Built appliction
+*.apk
+*.ap_
+
+# Java class
+*.class
+
+# Windows thumbnail db
+Thumbs.db
+
+# OSX
 .DS_Store
+
+# Analytics
+*.tap
+*.trace
+
+# Signing
+*.jks
+*.keystore
+
+# Android Studio
+*.iml
+.idea/*
+.gradle
 /build
 /captures
 .externalNativeBuild
 .cxx
+
+# Local configuration
 local.properties
