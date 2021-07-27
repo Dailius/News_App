@@ -8,6 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.NewsApp" />
+        android:theme="@style/Theme.NewsApp">
+        <activity android:name=".main.MainActivity"></activity>
+    </application>
 
 </manifest>
