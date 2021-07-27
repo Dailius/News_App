@@ -1,4 +1,4 @@
-package com.dailiusprograming.newsapp.main
+package com.dailiusprograming.newsapp.utils.fragment
 
 import androidx.fragment.app.Fragment
 import com.dailiusprograming.newsapp.R
