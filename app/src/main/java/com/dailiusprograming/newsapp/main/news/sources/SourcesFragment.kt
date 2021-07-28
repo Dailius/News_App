@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentSourcesBinding
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SourcesFragment : BaseFragment() {
     override val layoutRes get() = R.layout.fragment_sources
     private var _binding: FragmentSourcesBinding? = null
