@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import com.dailiusprograming.newsapp.R
 
 fun Fragment.openFragment(fragment: Fragment, addToBackStack: Boolean) {
-    val transaction = childFragmentManager.beginTransaction().replace(R.id.newsContainer, fragment)
+    val transaction = childFragmentManager.beginTransaction().replace(R.id.newsFragmentContainer, fragment)
     if (addToBackStack) {
         transaction.addToBackStack(null)
     }
