@@ -6,7 +6,9 @@ import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.main.pager.MainPagerFragment
 import com.dailiusprograming.newsapp.utils.activity.HandleBack
 import com.dailiusprograming.newsapp.utils.activity.openFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

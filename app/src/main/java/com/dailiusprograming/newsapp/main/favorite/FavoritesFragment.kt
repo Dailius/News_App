@@ -2,7 +2,9 @@ package com.dailiusprograming.newsapp.main.favorite
 
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavoritesFragment : BaseFragment() {
     override val layoutRes: Int
         get() = R.layout.fragment_favorites
