@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">NewsApp</string>
+    <string name="app_name">News App</string>
+
+    <string name="bottom_menu_source">Source</string>
+    <string name="bottom_menu_favorite">Favorite</string>
+    <string name="bottom_menu_about">About</string>
+
+
 </resources>
