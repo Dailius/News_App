@@ -13,7 +13,7 @@ import com.dailiusprograming.newsapp.utils.fragment.openFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NewsFragment : BaseFragment() {
+class NewsFragment : BaseFragment(), NewsPagerContainer {
     override val layoutRes get() = R.layout.fragment_news
     private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
@@ -41,7 +41,7 @@ class NewsFragment : BaseFragment() {
         )
     }
 
-    fun openArticlesFragment(){
+    override fun openArticlesFragment() {
         openFragment(
             ArticlesFragment.newInstance(),
             addToBackStack = false

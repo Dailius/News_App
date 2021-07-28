@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentSourcesBinding
+import com.dailiusprograming.newsapp.main.news.NewsPagerContainer
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,6 +22,13 @@ class SourcesFragment : BaseFragment() {
     ): View {
         _binding = FragmentSourcesBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.textView.setOnClickListener {
+            (parentFragment as NewsPagerContainer).openArticlesFragment()
+        }
     }
 
     companion object {
