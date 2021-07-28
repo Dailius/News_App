@@ -14,7 +14,7 @@ class MainPagerFragment : BaseFragment() {
     override val layoutRes = R.layout.fragment_main_pager
     private lateinit var adapter: MainPagerAdapter
     private var _binding: FragmentMainPagerBinding? = null
-    private val binding = _binding!!
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
