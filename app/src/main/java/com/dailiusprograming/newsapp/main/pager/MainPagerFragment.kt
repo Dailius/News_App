@@ -11,7 +11,7 @@ import com.dailiusprograming.newsapp.utils.activity.HandleBack
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 
 class MainPagerFragment : BaseFragment() {
-    override val layoutRes = R.layout.fragment_main_pager
+    override val layoutRes get() = R.layout.fragment_main_pager
     private lateinit var adapter: MainPagerAdapter
     private var _binding: FragmentMainPagerBinding? = null
     private val binding get() = _binding!!
