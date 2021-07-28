@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentNewsBinding
+import com.dailiusprograming.newsapp.main.news.articles.ArticlesFragment
 import com.dailiusprograming.newsapp.main.news.sources.SourcesFragment
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import com.dailiusprograming.newsapp.utils.fragment.openFragment
@@ -20,10 +21,7 @@ class NewsFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null){
-            openFragment(
-                SourcesFragment.newInstance(),
-                addToBackStack = false
-            )
+            openSourcesFragment()
         }
     }
 
@@ -34,6 +32,13 @@ class NewsFragment : BaseFragment() {
     ): View {
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    private fun openSourcesFragment(){
+        openFragment(
+            SourcesFragment.newInstance(),
+            addToBackStack = false
+        )
     }
 
     override fun onBackPressed() = childFragmentManager.popBackStackImmediate()
