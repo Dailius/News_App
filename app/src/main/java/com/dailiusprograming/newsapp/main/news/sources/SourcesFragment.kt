@@ -24,6 +24,7 @@ class SourcesFragment : BaseFragment() {
     }
 
     companion object {
+        fun newInstance() = SourcesFragment()
     }
 
     override fun onDestroy() {
