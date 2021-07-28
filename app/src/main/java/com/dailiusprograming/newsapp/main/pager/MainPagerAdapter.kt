@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dailiusprograming.newsapp.main.about.AboutFragment
-import com.dailiusprograming.newsapp.main.favorite.FavoritesFragment
+import com.dailiusprograming.newsapp.main.favorites.FavoritesFragment
 import com.dailiusprograming.newsapp.main.news.NewsFragment
 
 class MainPagerAdapter(

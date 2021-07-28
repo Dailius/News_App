@@ -1,4 +1,4 @@
-package com.dailiusprograming.newsapp.main.favorite
+package com.dailiusprograming.newsapp.main.favorites
 
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
