@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.dailiusprograming.newsapp.main.about.AboutFragment
 import com.dailiusprograming.newsapp.main.favorite.FavoriteFragment
 import com.dailiusprograming.newsapp.main.news.NewsFragment
 
@@ -19,7 +20,7 @@ class MainPagerAdapter(
 
     override fun getItemCount() = NUMBER_OF_PAGES
 
-    override fun createFragment(position: Int) = mapOfFragments[position]
+    override fun createFragment(position: Int): Fragment = mapOfFragments.getValue(position)
 
     companion object {
         const val NEWS_PAGE = 0
