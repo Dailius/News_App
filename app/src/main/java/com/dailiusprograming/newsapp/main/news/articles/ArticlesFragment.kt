@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentArticlesBinding
+import com.dailiusprograming.newsapp.main.news.NewsFragment
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,6 +25,7 @@ class ArticlesFragment : BaseFragment() {
     }
 
     companion object {
+        fun newInstance() = ArticlesFragment()
     }
 
     override fun onDestroy() {
