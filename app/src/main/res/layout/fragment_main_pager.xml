@@ -9,15 +9,16 @@
         android:id="@+id/mainViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/secondaryColor"
         android:paddingBottom="?attr/actionBarSize" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/design_default_color_primary"
-        app:itemRippleColor="@color/white"
-        app:itemTextColor="@color/white"
+        android:background="@color/primaryColor"
+        app:itemRippleColor="@color/secondaryDarkColor"
+        app:itemTextColor="@color/secondaryDarkColor"
         app:layout_constraintBottom_toBottomOf="@+id/mainViewPager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
