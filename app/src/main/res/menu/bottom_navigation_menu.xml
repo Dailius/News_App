@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/sourcesMenuItem"
+        android:id="@+id/newsMenuItem"
         android:checked="true"
         android:icon="@drawable/icon_source_list"
         android:title="@string/bottom_menu_source" />
