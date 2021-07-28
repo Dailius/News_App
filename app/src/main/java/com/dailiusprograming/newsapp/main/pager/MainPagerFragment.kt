@@ -25,7 +25,7 @@ class MainPagerFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMainPagerBinding.inflate(inflater, container, false)
         return binding.root
     }
