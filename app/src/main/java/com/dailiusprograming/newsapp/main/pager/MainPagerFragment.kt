@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentMainPagerBinding
+import com.dailiusprograming.newsapp.utils.activity.HandleBack
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 
 class MainPagerFragment : BaseFragment() {
@@ -69,6 +70,23 @@ class MainPagerFragment : BaseFragment() {
                 })
                 offscreenPageLimit = 2
             }
+        }
+    }
+
+    override fun onBackPressed(): Boolean {
+        val viewPagerItem = binding.mainViewPager.currentItem
+        return when {
+            viewPagerItem != MainPagerAdapter.NEWS_PAGE -> {
+                binding.mainViewPager.currentItem = MainPagerAdapter.NEWS_PAGE
+                true
+            }
+            viewPagerItem == MainPagerAdapter.NEWS_PAGE -> {
+                val fragment = childFragmentManager.findFragmentByTag(
+                    "android:switcher:" + R.id.mainViewPager + ":" + viewPagerItem
+                )
+                fragment is HandleBack && fragment.onBackPressed()
+            }
+            else -> false
         }
     }
 
