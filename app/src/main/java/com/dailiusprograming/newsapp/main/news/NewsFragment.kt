@@ -41,6 +41,13 @@ class NewsFragment : BaseFragment() {
         )
     }
 
+    fun openArticlesFragment(){
+        openFragment(
+            ArticlesFragment.newInstance(),
+            addToBackStack = false
+        )
+    }
+
     override fun onBackPressed() = childFragmentManager.popBackStackImmediate()
 
     companion object {
