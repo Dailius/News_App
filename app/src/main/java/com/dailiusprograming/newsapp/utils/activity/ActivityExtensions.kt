@@ -6,7 +6,7 @@ import com.dailiusprograming.newsapp.R
 
 fun FragmentActivity.openFragment(fragment: Fragment, addToBackStack: Boolean) {
     val transaction =
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment)
+        supportFragmentManager.beginTransaction().replace(R.id.mainFragmentContainer, fragment)
     if (addToBackStack) {
         transaction.addToBackStack(null)
     }

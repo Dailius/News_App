@@ -45,7 +45,7 @@ class MainPagerFragment : BaseFragment() {
                         true
                     }
                     R.id.favoriteMenuItem -> {
-                        mainViewPager.currentItem = MainPagerAdapter.FAVORITE_PAGE
+                        mainViewPager.currentItem = MainPagerAdapter.FAVORITES_PAGE
                         true
                     }
                     R.id.aboutMenuItem -> {

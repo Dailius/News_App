@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val fragment = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
+        val fragment = supportFragmentManager.findFragmentById(R.id.mainFragmentContainer)
         if (fragment is HandleBack && fragment.onBackPressed()){
             return
         }
