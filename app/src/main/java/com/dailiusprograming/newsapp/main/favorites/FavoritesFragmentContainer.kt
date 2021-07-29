@@ -13,7 +13,7 @@ import com.dailiusprograming.newsapp.utils.fragment.openFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FavoritesFragmentContainer : BaseFragment(), FragmentsPagerContainer {
+class FavoritesFragmentContainer : BaseFragment(), FavoritesPagerContainer {
     override val layoutRes get() = R.layout.fragment_favorites_container
     private var _binding: FragmentFavoritesContainerBinding? = null
     private val binding get() = _binding!!

@@ -1,5 +1,5 @@
 package com.dailiusprograming.newsapp.main.favorites
 
-interface FragmentsPagerContainer {
+interface FavoritesPagerContainer {
     fun openDetailsFragment()
 }
