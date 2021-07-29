@@ -6,8 +6,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FavoritesFragmentContainer : BaseFragment() {
-    override val layoutRes: Int
-        get() = R.layout.fragment_favorites
+    override val layoutRes get() = R.layout.fragment_favorites_container
 
     override fun onBackPressed() = childFragmentManager.popBackStackImmediate()
 
