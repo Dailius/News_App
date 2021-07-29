@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.dailiusprograming.newsapp.R
-import com.dailiusprograming.newsapp.databinding.FragmentNewsBinding
+import com.dailiusprograming.newsapp.databinding.FragmentNewsContainerBinding
 import com.dailiusprograming.newsapp.main.news.articles.ArticlesFragment
 import com.dailiusprograming.newsapp.main.news.details.DetailsFragment
 import com.dailiusprograming.newsapp.main.news.sources.SourcesFragment
@@ -15,8 +15,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class NewsFragmentContainer : BaseFragment(), NewsPagerContainer {
-    override val layoutRes get() = R.layout.fragment_news
-    private var _binding: FragmentNewsBinding? = null
+    override val layoutRes get() = R.layout.fragment_news_container
+    private var _binding: FragmentNewsContainerBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class NewsFragmentContainer : BaseFragment(), NewsPagerContainer {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNewsBinding.inflate(inflater, container, false)
+        _binding = FragmentNewsContainerBinding.inflate(inflater, container, false)
         return binding.root
     }
 
