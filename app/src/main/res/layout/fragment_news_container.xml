@@ -4,4 +4,4 @@
     android:id="@+id/newsFragmentContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.news.NewsFragmentContainer"/>
+    tools:context=".main.news.NewsFragmentContainer" />
