@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentFavoritesContainerBinding
-import com.dailiusprograming.newsapp.databinding.FragmentNewsContainerBinding
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
