@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentFavoritesContainerBinding
+import com.dailiusprograming.newsapp.main.news.details.DetailsFragment
 import com.dailiusprograming.newsapp.main.pager.MainPagerAdapter
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import com.dailiusprograming.newsapp.utils.fragment.openFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FavoritesFragmentContainer : BaseFragment() {
+class FavoritesFragmentContainer : BaseFragment(), FragmentsPagerContainer {
     override val layoutRes get() = R.layout.fragment_favorites_container
     private var _binding: FragmentFavoritesContainerBinding? = null
     private val binding get() = _binding!!
@@ -36,6 +37,14 @@ class FavoritesFragmentContainer : BaseFragment() {
     private fun openFavoritesFragment() {
         openFragment(
             FavoritesFragment.newInstance(),
+            addToBackStack = false,
+            pageConstFromMainPagerAdapter = MainPagerAdapter.FAVORITES_PAGE
+        )
+    }
+
+    override fun openDetailsFragment() {
+        openFragment(
+            DetailsFragment.newInstance(),
             addToBackStack = false,
             pageConstFromMainPagerAdapter = MainPagerAdapter.FAVORITES_PAGE
         )
