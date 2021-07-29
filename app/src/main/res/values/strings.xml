@@ -6,4 +6,10 @@
     <string name="bottom_menu_about">About</string>
 
     <string name="main_pager_fragment_tag">"f%s"</string>
+
+    <string name="temporary_sources">SOURCES</string>
+    <string name="temporary_fragments">FRAGMENTS</string>
+    <string name="temporary_articles">ARTICLES</string>
+    <string name="temporary_details">DETAILS</string>
+
 </resources>

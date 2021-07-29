@@ -12,7 +12,7 @@
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
-        android:text="ARTICLES"
+        android:text="@string/temporary_articles"
         android:textSize="40sp" />
 
 </FrameLayout>

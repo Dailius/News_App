@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.news.details.DetailsFragment">
+    tools:context=".main.favorites.FavoritesFragment">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView"
@@ -12,7 +12,7 @@
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
-        android:text="@string/temporary_details"
+        android:text="@string/temporary_fragments"
         android:textSize="40sp" />
 
 </FrameLayout>

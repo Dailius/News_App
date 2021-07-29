@@ -15,7 +15,11 @@ class FavoritesFragmentContainer : BaseFragment() {
     private var _binding: FragmentFavoritesContainerBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentFavoritesContainerBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -31,4 +35,3 @@ class FavoritesFragmentContainer : BaseFragment() {
         super.onDestroy()
     }
 }
-

@@ -12,7 +12,7 @@
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
-        android:text="SOURCES"
+        android:text="@string/temporary_sources"
         android:textSize="40sp" />
 
 </FrameLayout>
