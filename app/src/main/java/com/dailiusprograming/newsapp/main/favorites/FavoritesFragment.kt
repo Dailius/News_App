@@ -22,6 +22,7 @@ class FavoritesFragment : BaseFragment() {
     }
 
     companion object {
+        fun newInstance() = FavoritesFragment()
     }
 
     override fun onDestroy() {
