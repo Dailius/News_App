@@ -14,7 +14,7 @@ import com.dailiusprograming.newsapp.utils.fragment.openFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NewsFragment : BaseFragment(), NewsPagerContainer {
+class NewsFragmentContainer : BaseFragment(), NewsPagerContainer {
     override val layoutRes get() = R.layout.fragment_news
     private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
@@ -50,7 +50,7 @@ class NewsFragment : BaseFragment(), NewsPagerContainer {
     override fun onBackPressed() = childFragmentManager.popBackStackImmediate()
 
     companion object {
-        fun newInstance() = NewsFragment()
+        fun newInstance() = NewsFragmentContainer()
     }
 
     override fun onDestroy() {

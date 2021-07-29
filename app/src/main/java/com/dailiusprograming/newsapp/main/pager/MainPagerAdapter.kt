@@ -6,14 +6,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dailiusprograming.newsapp.main.about.AboutFragment
 import com.dailiusprograming.newsapp.main.favorites.FavoritesFragment
-import com.dailiusprograming.newsapp.main.news.NewsFragment
+import com.dailiusprograming.newsapp.main.news.NewsFragmentContainer
 
 class MainPagerAdapter(
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle
 ) : FragmentStateAdapter(fragmentManager, lifecycle) {
     private val mapOfFragments = mapOf<Int, Fragment>(
-        NEWS_PAGE to NewsFragment.newInstance(),
+        NEWS_PAGE to NewsFragmentContainer.newInstance(),
         FAVORITES_PAGE to FavoritesFragment.newInstance(),
         ABOUT_PAGE to AboutFragment.newInstance()
     )
