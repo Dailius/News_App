@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentNewsBinding
 import com.dailiusprograming.newsapp.main.news.articles.ArticlesFragment
+import com.dailiusprograming.newsapp.main.news.details.DetailsFragment
 import com.dailiusprograming.newsapp.main.news.sources.SourcesFragment
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import com.dailiusprograming.newsapp.utils.fragment.openFragment
@@ -20,7 +21,7 @@ class NewsFragment : BaseFragment(), NewsPagerContainer {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             openSourcesFragment()
         }
     }
@@ -34,18 +35,16 @@ class NewsFragment : BaseFragment(), NewsPagerContainer {
         return binding.root
     }
 
-    private fun openSourcesFragment(){
-        openFragment(
-            SourcesFragment.newInstance(),
-            addToBackStack = false
-        )
+    private fun openSourcesFragment() {
+        openFragment(SourcesFragment.newInstance(), addToBackStack = false)
     }
 
     override fun openArticlesFragment() {
-        openFragment(
-            ArticlesFragment.newInstance(),
-            addToBackStack = false
-        )
+        openFragment(ArticlesFragment.newInstance(), addToBackStack = true)
+    }
+
+    override fun openDetailsFragment() {
+        openFragment(DetailsFragment.newInstance(), addToBackStack = true)
     }
 
     override fun onBackPressed() = childFragmentManager.popBackStackImmediate()

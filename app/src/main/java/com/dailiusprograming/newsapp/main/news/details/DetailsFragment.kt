@@ -24,6 +24,7 @@ class DetailsFragment : BaseFragment() {
     }
 
     companion object {
+        fun newInstance() = DetailsFragment()
     }
 
     override fun onDestroy() {

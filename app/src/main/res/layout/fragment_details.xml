@@ -5,4 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".main.news.details.DetailsFragment">
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="DETAILS"
+        android:textSize="40sp" />
+
 </FrameLayout>
