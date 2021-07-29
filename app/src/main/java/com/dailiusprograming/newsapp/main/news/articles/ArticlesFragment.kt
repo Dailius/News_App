@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentArticlesBinding
 import com.dailiusprograming.newsapp.main.news.NewsPagerContainer
-import com.dailiusprograming.newsapp.main.news.details.DetailsFragment
-import com.dailiusprograming.newsapp.utils.activity.openFragment
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,7 +29,7 @@ class ArticlesFragment : BaseFragment() {
         binding.textView.setOnClickListener { openDetailsFragment() }
     }
 
-    private fun openDetailsFragment(){
+    private fun openDetailsFragment() {
         (parentFragment as NewsPagerContainer).openDetailsFragment()
     }
 

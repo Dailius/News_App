@@ -82,7 +82,7 @@ class MainPagerFragment : BaseFragment() {
             }
             viewPagerItem == MainPagerAdapter.NEWS_PAGE -> {
                 val fragment = childFragmentManager.findFragmentByTag(
-                    "android:switcher:" + R.id.mainViewPager + ":" + viewPagerItem
+                    resources.getString(R.string.main_pager_fragment_tag, viewPagerItem.toString())
                 )
                 fragment is HandleBack && fragment.onBackPressed()
             }
