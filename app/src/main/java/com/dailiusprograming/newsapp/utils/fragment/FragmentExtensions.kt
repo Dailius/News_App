@@ -7,13 +7,19 @@ import com.dailiusprograming.newsapp.main.pager.MainPagerAdapter
 fun Fragment.openFragment(
     fragment: Fragment,
     addToBackStack: Boolean,
-    pageConstFromMainPagerAdapter: Int = MainPagerAdapter.NEWS_PAGE
+    pageConstFromMainPagerAdapter: Int = MainPagerAdapter.NEWS_PAGE,
+    fragmentTag: String = ""
 ) {
-    var fragmentLayoutId: Int = R.id.newsFragmentContainer
-    if (pageConstFromMainPagerAdapter == MainPagerAdapter.FAVORITES_PAGE) {
-        fragmentLayoutId = R.id.favoriteFragmentContainer
+    val fragmentLayoutId = when(pageConstFromMainPagerAdapter){
+        MainPagerAdapter.FAVORITES_PAGE -> { R.id.favoriteFragmentContainer }
+        else -> { R.id.newsFragmentContainer }
     }
-    val transaction = childFragmentManager.beginTransaction().replace(fragmentLayoutId, fragment)
+
+    val transaction = childFragmentManager.beginTransaction().replace(
+        fragmentLayoutId,
+        fragment,
+        fragmentTag + pageConstFromMainPagerAdapter.toString()
+    )
     if (addToBackStack) {
         transaction.addToBackStack(null)
     }

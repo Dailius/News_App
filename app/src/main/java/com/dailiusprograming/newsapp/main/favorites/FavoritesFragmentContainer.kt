@@ -46,13 +46,15 @@ class FavoritesFragmentContainer : BaseFragment(), FavoritesPagerContainer {
         openFragment(
             DetailsFragment.newInstance(),
             addToBackStack = false,
-            pageConstFromMainPagerAdapter = MainPagerAdapter.FAVORITES_PAGE
+            pageConstFromMainPagerAdapter = MainPagerAdapter.FAVORITES_PAGE,
+            fragmentTag = FRAGMENT_TAG
         )
     }
 
     override fun onBackPressed() = childFragmentManager.popBackStackImmediate()
 
     companion object {
+        const val FRAGMENT_TAG = "details"
         fun newInstance() = FavoritesFragmentContainer()
     }
 

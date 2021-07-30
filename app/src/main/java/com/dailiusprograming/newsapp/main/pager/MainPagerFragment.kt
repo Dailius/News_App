@@ -75,12 +75,14 @@ class MainPagerFragment : BaseFragment() {
 
     override fun onBackPressed(): Boolean {
         val viewPagerItem = binding.mainViewPager.currentItem
+        val isNewsPageDisplayed = (viewPagerItem != MainPagerAdapter.NEWS_PAGE)
+//        val isFavoritesPageDisplayedWithDetailsFragment =
         return when {
-            viewPagerItem != MainPagerAdapter.NEWS_PAGE -> {
+            isNewsPageDisplayed -> {
                 binding.mainViewPager.currentItem = MainPagerAdapter.NEWS_PAGE
                 true
             }
-            viewPagerItem == MainPagerAdapter.NEWS_PAGE -> {
+            !isNewsPageDisplayed -> {
                 val fragment = childFragmentManager.findFragmentByTag(
                     resources.getString(R.string.main_pager_fragment_tag, viewPagerItem.toString())
                 )
