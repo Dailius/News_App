@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             openFragment(
                 MainPagerFragment.newInstance(),
                 addToBackStack = false
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         val fragment = supportFragmentManager.findFragmentById(R.id.mainFragmentContainer)
-        if (fragment is HandleBack && fragment.onBackPressed()){
+        if (fragment is HandleBack && fragment.onBackPressed()) {
             return
         }
         super.onBackPressed()

@@ -45,7 +45,7 @@ class FavoritesFragmentContainer : BaseFragment(), FavoritesPagerContainer {
     override fun openDetailsFragment() {
         openFragment(
             DetailsFragment.newInstance(),
-            addToBackStack = false,
+            addToBackStack = true,
             pageConstFromMainPagerAdapter = MainPagerAdapter.FAVORITES_PAGE,
             fragmentTag = FRAGMENT_TAG
         )
