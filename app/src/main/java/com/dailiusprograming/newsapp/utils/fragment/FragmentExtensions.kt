@@ -8,17 +8,19 @@ fun Fragment.openFragment(
     fragment: Fragment,
     addToBackStack: Boolean,
     pageConstFromMainPagerAdapter: Int = MainPagerAdapter.NEWS_PAGE,
-    fragmentTag: String = ""
 ) {
-    val fragmentLayoutId = when(pageConstFromMainPagerAdapter){
-        MainPagerAdapter.FAVORITES_PAGE -> { R.id.favoriteFragmentContainer }
-        else -> { R.id.newsFragmentContainer }
+    val fragmentLayoutId = when (pageConstFromMainPagerAdapter) {
+        MainPagerAdapter.FAVORITES_PAGE -> {
+            R.id.favoriteFragmentContainer
+        }
+        else -> {
+            R.id.newsFragmentContainer
+        }
     }
 
     val transaction = childFragmentManager.beginTransaction().replace(
         fragmentLayoutId,
         fragment,
-        fragmentTag + pageConstFromMainPagerAdapter.toString()
     )
     if (addToBackStack) {
         transaction.addToBackStack(null)
