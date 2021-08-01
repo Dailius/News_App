@@ -23,9 +23,7 @@ class FavoritesFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.textView.setOnClickListener {
-            openDetailsFragment()
-        }
+        binding.textView.setOnClickListener { openDetailsFragment() }
     }
 
     private fun openDetailsFragment() {
