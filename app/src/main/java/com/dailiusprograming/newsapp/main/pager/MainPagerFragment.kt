@@ -1,33 +1,21 @@
 package com.dailiusprograming.newsapp.main.pager
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentMainPagerBinding
 import com.dailiusprograming.newsapp.utils.activity.HandleBack
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
+import com.dailiusprograming.newsapp.utils.view.viewBinding
 
-class MainPagerFragment : BaseFragment() {
-    override val layoutRes get() = R.layout.fragment_main_pager
+class MainPagerFragment : BaseFragment(R.layout.fragment_main_pager) {
     private lateinit var adapter: MainPagerAdapter
-    private var _binding: FragmentMainPagerBinding? = null
-    private val binding get() = _binding!!
+    private val binding by viewBinding(FragmentMainPagerBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         adapter = MainPagerAdapter(fragmentManager = childFragmentManager, lifecycle = lifecycle)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentMainPagerBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -101,10 +89,5 @@ class MainPagerFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = MainPagerFragment()
-    }
-
-    override fun onDestroy() {
-        _binding = null
-        super.onDestroy()
     }
 }
