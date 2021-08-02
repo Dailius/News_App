@@ -16,7 +16,7 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpToolBar()
-        binding.coordinatorLayout.fitsSystemWindows = true
+        setUpTextView()
     }
 
     private fun setUpToolBar() {
@@ -28,12 +28,27 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
         }
     }
 
+    private fun setUpTextView() {
+        binding.textView.text =
+            resources.getString(
+                R.string.temporary_transfer_args,
+                arguments?.getString(ARTICLE_KEY),
+                getString(R.string.temporary_details)
+            )
+    }
+
     private fun backToPreviousScreen() {
         activity?.onBackPressed()
     }
 
     companion object {
-        fun newInstance() = DetailsFragment()
+        private const val ARTICLE_KEY = "article_key"
+
+        fun newInstance(args: String): DetailsFragment {
+            val fragment = DetailsFragment()
+            fragment.arguments = Bundle().apply { putString(ARTICLE_KEY, args) }
+            return fragment
+        }
     }
 
     override fun onResume() {

@@ -27,9 +27,9 @@ class FavoritesFragmentContainer : BaseFragment(R.layout.fragment_favorites_cont
         )
     }
 
-    override fun openDetailsFragment() {
+    override fun openDetailsFragment(args: String) {
         openFragment(
-            DetailsFragment.newInstance(),
+            DetailsFragment.newInstance(args),
             addToBackStack = true,
             pageConstFromMainPagerAdapter = MainPagerAdapter.FAVORITES_PAGE,
         )

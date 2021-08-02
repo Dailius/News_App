@@ -12,11 +12,16 @@ class FavoritesFragment : BaseFragment(R.layout.fragment_favorites) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.textView.setOnClickListener { openDetailsFragment() }
+        onClickTextView()
     }
 
-    private fun openDetailsFragment() {
-        (parentFragment as FavoritesPagerContainer).openDetailsFragment()
+    private fun onClickTextView() {
+        val args: String = resources.getString(R.string.temporary_favorites)
+        binding.textView.setOnClickListener { openDetailsFragment(args) }
+    }
+
+    private fun openDetailsFragment(args: String) {
+        (parentFragment as FavoritesPagerContainer).openDetailsFragment(args)
     }
 
     companion object {

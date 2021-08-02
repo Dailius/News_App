@@ -20,7 +20,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
     }
 
     private fun setUpTextView(){
-        binding.textView.setOnClickListener { openDetailsFragment() }
+        onClickTextView()
         binding.textView.text =
             resources.getString(
                 R.string.temporary_transfer_args,
@@ -29,8 +29,13 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
             )
     }
 
-    private fun openDetailsFragment() {
-        (parentFragment as NewsPagerContainer).openDetailsFragment()
+    private fun onClickTextView() {
+        val args: String = resources.getString(R.string.temporary_articles)
+        binding.textView.setOnClickListener { openDetailsFragment(args)}
+        }
+
+    private fun openDetailsFragment(args: String) {
+        (parentFragment as NewsPagerContainer).openDetailsFragment(args)
     }
 
     private fun setUpToolBar() {

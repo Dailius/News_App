@@ -15,10 +15,10 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        onclickTextView()
+        onClickTextView()
     }
 
-    private fun onclickTextView() {
+    private fun onClickTextView() {
         val args: String = resources.getString(R.string.temporary_sources)
         binding.textView.setOnClickListener {
             (parentFragment as NewsPagerContainer).openArticlesFragment(args)

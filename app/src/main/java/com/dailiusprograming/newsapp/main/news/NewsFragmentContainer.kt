@@ -26,8 +26,8 @@ class NewsFragmentContainer : BaseFragment(R.layout.fragment_news_container), Ne
         openFragment(ArticlesFragment.newInstance(args), addToBackStack = true)
     }
 
-    override fun openDetailsFragment() {
-        openFragment(DetailsFragment.newInstance(), addToBackStack = true)
+    override fun openDetailsFragment(args: String) {
+        openFragment(DetailsFragment.newInstance(args), addToBackStack = true)
     }
 
     override fun onBackPressed() = childFragmentManager.popBackStackImmediate()
