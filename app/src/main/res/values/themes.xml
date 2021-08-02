@@ -15,6 +15,6 @@
         <item name="toolbarStyle">@style/Theme.NewsApp.Toolbar</item>
     </style>
     <style name="Theme.NewsApp.Toolbar" parent="Widget.MaterialComponents.Toolbar">
-        <item name="titleTextColor">@color/secondaryDarkColor</item>
+        <item name="titleTextColor">@color/primaryTextColor</item>
     </style>
 </resources>
