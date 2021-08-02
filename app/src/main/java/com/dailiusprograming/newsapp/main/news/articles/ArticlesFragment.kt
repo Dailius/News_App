@@ -23,7 +23,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
         (parentFragment as NewsPagerContainer).openDetailsFragment()
     }
 
-    private fun setUpToolBar(){
+    private fun setUpToolBar() {
         binding.toolbar.apply {
             setNavigationIcon(R.drawable.ic_arrow_back)
             setNavigationOnClickListener {
@@ -32,7 +32,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
         }
     }
 
-    private fun backToPreviousScreen(){
+    private fun backToPreviousScreen() {
         activity?.onBackPressed()
     }
 
