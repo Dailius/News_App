@@ -1,6 +1,7 @@
 package com.dailiusprograming.newsapp.main.news.details
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.View
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentDetailsBinding
@@ -12,6 +13,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailsFragment : BaseFragment(R.layout.fragment_details) {
     private val binding by viewBinding(FragmentDetailsBinding::bind)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val inflater = TransitionInflater.from(requireContext())
+        enterTransition = inflater.inflateTransition(R.transition.fade)
+        exitTransition = inflater.inflateTransition(R.transition.fade)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
