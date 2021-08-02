@@ -21,7 +21,7 @@
             android:layout_height="?attr/actionBarSize"
             android:padding="4dp"
             app:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
-            app:title="Source">
+            app:title="@string/sources_feature_sources">
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
