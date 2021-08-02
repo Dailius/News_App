@@ -18,4 +18,6 @@
     <string name="favorites_feature_favorites">Favorites</string>
 
     <string name="about_feature_about">About</string>
+
+    <string name="articles_feature_articles">Articles</string>
 </resources>

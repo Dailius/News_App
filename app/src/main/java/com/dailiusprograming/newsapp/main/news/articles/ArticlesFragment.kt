@@ -15,11 +15,25 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpToolBar()
         binding.textView.setOnClickListener { openDetailsFragment() }
     }
 
     private fun openDetailsFragment() {
         (parentFragment as NewsPagerContainer).openDetailsFragment()
+    }
+
+    private fun setUpToolBar(){
+        binding.toolbar.apply {
+            setNavigationIcon(R.drawable.ic_arrow_back)
+            setNavigationOnClickListener {
+                backToPreviousScreen()
+            }
+        }
+    }
+
+    private fun backToPreviousScreen(){
+        activity?.onBackPressed()
     }
 
     companion object {
