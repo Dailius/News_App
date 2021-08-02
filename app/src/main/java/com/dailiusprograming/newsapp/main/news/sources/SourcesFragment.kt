@@ -20,9 +20,11 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
 
     private fun onClickTextView() {
         val args: String = resources.getString(R.string.temporary_sources)
-        binding.textView.setOnClickListener {
-            (parentFragment as NewsPagerContainer).openArticlesFragment(args)
-        }
+        binding.textView.setOnClickListener { openArticlesFragment(args) }
+    }
+
+    private fun openArticlesFragment(args: String) {
+        (parentFragment as NewsPagerContainer).openArticlesFragment(args)
     }
 
     companion object {
