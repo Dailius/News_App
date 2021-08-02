@@ -19,6 +19,15 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
         setUpTextView()
     }
 
+    private fun setUpToolBar() {
+        binding.toolbar.apply {
+            setNavigationIcon(R.drawable.ic_arrow_back)
+            setNavigationOnClickListener {
+                backToPreviousScreen()
+            }
+        }
+    }
+
     private fun setUpTextView(){
         onClickTextView()
         binding.textView.text =
@@ -36,15 +45,6 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
 
     private fun openDetailsFragment(args: String) {
         (parentFragment as NewsPagerContainer).openDetailsFragment(args)
-    }
-
-    private fun setUpToolBar() {
-        binding.toolbar.apply {
-            setNavigationIcon(R.drawable.ic_arrow_back)
-            setNavigationOnClickListener {
-                backToPreviousScreen()
-            }
-        }
     }
 
     private fun backToPreviousScreen() {
