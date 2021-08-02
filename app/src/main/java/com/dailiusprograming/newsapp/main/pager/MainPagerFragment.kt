@@ -50,6 +50,7 @@ class MainPagerFragment : BaseFragment(R.layout.fragment_main_pager) {
         binding.apply {
             mainViewPager.apply {
                 adapter = this@MainPagerFragment.adapter
+                setPageTransformer(ZoomOutPageTransformer())
                 registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                     override fun onPageSelected(position: Int) {
                         super.onPageSelected(position)
