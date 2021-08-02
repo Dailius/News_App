@@ -22,8 +22,8 @@ class NewsFragmentContainer : BaseFragment(R.layout.fragment_news_container), Ne
         openFragment(SourcesFragment.newInstance(), addToBackStack = false)
     }
 
-    override fun openArticlesFragment() {
-        openFragment(ArticlesFragment.newInstance(), addToBackStack = true)
+    override fun openArticlesFragment(args: String) {
+        openFragment(ArticlesFragment.newInstance(args), addToBackStack = true)
     }
 
     override fun openDetailsFragment() {

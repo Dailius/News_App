@@ -16,7 +16,17 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpToolBar()
+        setUpTextView()
+    }
+
+    private fun setUpTextView(){
         binding.textView.setOnClickListener { openDetailsFragment() }
+        binding.textView.text =
+            resources.getString(
+                R.string.temporary_transfer_args,
+                arguments?.getString(SOURCE_KEY),
+                getString(R.string.temporary_articles)
+            )
     }
 
     private fun openDetailsFragment() {
@@ -37,6 +47,12 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
     }
 
     companion object {
-        fun newInstance() = ArticlesFragment()
+        private const val SOURCE_KEY = "source_key"
+
+        fun newInstance(args: String): ArticlesFragment {
+            val fragment = ArticlesFragment()
+            fragment.arguments = Bundle().apply { putString(SOURCE_KEY, args) }
+            return fragment
+        }
     }
 }
