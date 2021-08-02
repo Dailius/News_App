@@ -11,9 +11,11 @@
     <string name="temporary_favorites">FAVORITES</string>
     <string name="temporary_articles">ARTICLES</string>
     <string name="temporary_details">DETAILS</string>
+    <string name="temporary_about">ABOUT</string>
 
     <string name="sources_feature_sources">Sources</string>
 
     <string name="favorites_feature_favorites">Favorites</string>
 
+    <string name="about_feature_about">About</string>
 </resources>
