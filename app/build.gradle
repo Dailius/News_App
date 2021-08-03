@@ -25,10 +25,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "NEWS_API_KEY", "\"6a0ad2319cba41f69226423946c5b052\"")
+            buildConfigField("String", "NEWS_API_KEY", API_KEY)
         }
         debug {
-            buildConfigField("String", "NEWS_API_KEY", "\"6a0ad2319cba41f69226423946c5b052\"")
+            buildConfigField("String", "NEWS_API_KEY", API_KEY)
         }
     }
     compileOptions {
