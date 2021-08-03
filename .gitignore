@@ -31,4 +31,5 @@ gradle.properties
 
 # Local configuration
 local.properties
+/apikey.properties
 
