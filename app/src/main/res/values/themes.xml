@@ -13,7 +13,16 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
     <style name="Theme.NewsApp.Toolbar" parent="Widget.MaterialComponents.Toolbar">
         <item name="titleTextColor">@color/primaryTextColor</item>
+    </style>
+
+    <style name="Theme.NewsApp.SplashScreenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
+        <item name="colorOnPrimary">@color/primaryLightColor</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowBackground">@drawable/splash_screen_background</item>
     </style>
 </resources>
