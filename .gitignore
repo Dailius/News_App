@@ -27,7 +27,7 @@ Thumbs.db
 /captures
 .externalNativeBuild
 .cxx
-/gradle.properties
+gradle.properties
 
 # Local configuration
 local.properties
