@@ -6,7 +6,7 @@ plugins {
 }
 
 def apiKeyProperties = new Properties()
-apiKeyProperties.load(new FileInputStream(rootProject.file("apikey.properties")))
+apiKeyProperties.load(new FileInputStream(rootProject.file("key.properties")))
 
 android {
     compileSdkVersion 30
