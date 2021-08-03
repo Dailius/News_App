@@ -16,6 +16,14 @@ class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        startActivity(Intent(this, MainActivity::class.java))
+        val isTutorialScreenDisplayed = storageGeneral.isTutorialShown
+
+        if (isTutorialScreenDisplayed) {
+            startActivity(Intent(this, MainActivity::class.java))
+        } else {
+//            startActivity(Intent(this, TutorialActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+        finish()
     }
 }
