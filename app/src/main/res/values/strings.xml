@@ -21,4 +21,6 @@
     <string name="about_feature_about">About</string>
 
     <string name="articles_feature_articles">Articles</string>
+
+    <string name="tutorial_button_next">Next</string>
 </resources>
