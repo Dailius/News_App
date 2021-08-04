@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NewsApp">
+        <activity android:name=".tutorial.TutorialActivity"/>
         <activity
             android:name=".main.MainActivity"
             android:theme="@style/Theme.NewsApp" />
@@ -22,8 +23,10 @@
             android:theme="@style/Theme.NewsApp.SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
