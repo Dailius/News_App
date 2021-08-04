@@ -37,7 +37,7 @@
         app:dotsSpacing="6dp"
         app:dotsStrokeColor="@color/primaryColor"
         app:dotsStrokeWidth="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/materialButton"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         app:stiffness="300" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:backgroundTint="@color/primaryColor"
