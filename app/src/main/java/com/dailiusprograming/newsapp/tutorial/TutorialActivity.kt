@@ -8,8 +8,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.ActivityTutorialBinding
 import com.dailiusprograming.newsapp.main.MainActivity
-import com.dailiusprograming.newsapp.main.pager.ZoomOutPageTransformer
 import com.dailiusprograming.newsapp.tutorial.model.TutorialPage
+import com.dailiusprograming.newsapp.utils.animation.ZoomOutPageTransformer
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
