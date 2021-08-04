@@ -11,7 +11,7 @@ class StorageGeneral @Inject constructor(
 ) {
     private val sharedPref =
         context.getSharedPreferences(SHARED_PREF_FILE_NAME, Context.MODE_PRIVATE)
-    var isTutorialShown: Boolean
+    var isTutorialDisplayed: Boolean
         get() = sharedPref.getBoolean(STORE_KEY_TUTORIAL_SCREEN, false)
         set(value) = sharedPref.edit().putBoolean(STORE_KEY_TUTORIAL_SCREEN, value).apply()
 
