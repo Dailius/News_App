@@ -1,4 +1,4 @@
-package com.dailiusprograming.newsapp.main.pager
+package com.dailiusprograming.newsapp.utils.animation
 
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
