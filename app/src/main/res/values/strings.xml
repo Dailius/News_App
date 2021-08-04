@@ -23,4 +23,8 @@
     <string name="articles_feature_articles">Articles</string>
 
     <string name="tutorial_button_next">Next</string>
+    <string name="tutorial_description_variety_sources">Variety of news sources</string>
+    <string name="tutorial_description_breaking_news">Breaking news</string>
+    <string name="tutorial_description_save_favorites">Save and store your favorite articles</string>
+
 </resources>
