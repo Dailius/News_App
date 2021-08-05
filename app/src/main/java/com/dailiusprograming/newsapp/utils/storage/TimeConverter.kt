@@ -5,7 +5,7 @@ import java.util.*
 
 class TimeConverter {
     @TypeConverter
-    fun fromTimestamp(value: Long?) = value?.let (::Date)
+    fun fromTimestamp(value: Long?) = value?.let(::Date)
 
     @TypeConverter
     fun dateToTimestamp(date: Date?) = date?.time
