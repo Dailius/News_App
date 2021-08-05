@@ -11,7 +11,7 @@ import com.dailiusprograming.newsapp.utils.storage.MainDatabase.Companion.DB_VER
 )
 @TypeConverters(TimeConverter::class)
 abstract class MainDatabase : RoomDatabase() {
-    companion object{
+    companion object {
         const val DB_VERSION = 1
     }
 }
