@@ -12,7 +12,7 @@ import io.reactivex.rxjava3.core.Scheduler
 import javax.inject.Inject
 
 @HiltViewModel
-class SourceViewModel @Inject constructor(
+class SourcesViewModel @Inject constructor(
     private val sourcesUseCase: FetchSourcesUseCase,
     @Main private val scheduler: Scheduler
 ) : BaseViewModel() {
