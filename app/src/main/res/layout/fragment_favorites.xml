@@ -50,6 +50,7 @@
                 android:focusable="true"
                 android:gravity="center"
                 android:text="@string/temporary_favorites"
+                android:textColor="@color/secondaryTextColor"
                 android:textSize="40sp" />
 
         </FrameLayout>

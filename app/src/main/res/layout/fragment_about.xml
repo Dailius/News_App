@@ -36,6 +36,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="@string/temporary_about"
+        android:textColor="@color/secondaryTextColor"
         android:textSize="40sp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
