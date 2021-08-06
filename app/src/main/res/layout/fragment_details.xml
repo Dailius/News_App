@@ -13,6 +13,7 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/primaryColor"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar">
 
@@ -20,6 +21,7 @@
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/primaryColor"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/primaryColor"
             app:expandedTitleMarginEnd="64dp"

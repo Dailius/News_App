@@ -13,17 +13,17 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar">
+        android:background="@color/primaryColor"
+        android:fitsSystemWindows="true">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_marginStart="58dp"
+            android:background="@color/primaryColor"
             android:paddingStart="4dp"
             android:paddingEnd="8dp"
-            app:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
             app:title="@string/feature_about">
 
         </androidx.appcompat.widget.Toolbar>
