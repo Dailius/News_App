@@ -6,7 +6,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentMainPagerBinding
 import com.dailiusprograming.newsapp.utils.activity.HandleBack
-import com.dailiusprograming.newsapp.utils.animation.ZoomOutPageTransformer
+import com.dailiusprograming.newsapp.utils.animation.FlipHorizontalTransformer
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import com.dailiusprograming.newsapp.utils.fragment.reduceDragSensitivity
 import com.dailiusprograming.newsapp.utils.view.viewBinding
@@ -53,7 +53,7 @@ class MainPagerFragment : BaseFragment(R.layout.fragment_main_pager) {
             mainViewPager.apply {
                 adapter = this@MainPagerFragment.adapter
                 reduceDragSensitivity()
-                setPageTransformer(ZoomOutPageTransformer())
+                setPageTransformer(FlipHorizontalTransformer())
                 registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                     override fun onPageSelected(position: Int) {
                         super.onPageSelected(position)
