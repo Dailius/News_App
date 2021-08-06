@@ -1,6 +1,7 @@
 package com.dailiusprograming.newsapp.utils.network
 
 import com.dailiusprograming.newsapp.BuildConfig
+import com.dailiusprograming.newsapp.main.news.sources.data.model.SourceResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -10,7 +11,7 @@ interface ApiService {
     @GET("sources")
     fun getSource(
         @Query("apiKey") apiKey: String = BuildConfig.NEWS_API_KEY
-    ): Single<Any>
+    ): Single<SourceResponse>
 
     @GET("everything")
     fun getAllNews(
