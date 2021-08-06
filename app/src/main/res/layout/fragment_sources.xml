@@ -24,7 +24,7 @@
             android:paddingStart="4dp"
             android:paddingEnd="8dp"
             app:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
-            app:title="@string/sources_feature_sources">
+            app:title="@string/feature_sources">
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -39,16 +39,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:text="@string/temporary_sources"
-                android:textSize="40sp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sourceRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:scrollbars="vertical"
+                android:visibility="visible"
+                tools:listitem="@layout/fragment_sources_list_item" />
 
         </FrameLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

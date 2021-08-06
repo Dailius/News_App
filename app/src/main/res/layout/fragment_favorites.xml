@@ -26,7 +26,7 @@
             android:paddingStart="4dp"
             android:paddingEnd="8dp"
             app:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
-            app:title="@string/favorites_feature_favorites">
+            app:title="@string/feature_favorites">
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>

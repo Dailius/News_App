@@ -23,7 +23,7 @@
             android:paddingStart="4dp"
             android:paddingEnd="8dp"
             app:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
-            app:title="@string/articles_feature_articles">
+            app:title="@string/feature_articles">
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
