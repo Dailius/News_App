@@ -2,6 +2,7 @@ package com.dailiusprograming.newsapp.utils.storage
 
 import android.content.Context
 import androidx.room.Room
+import com.dailiusprograming.newsapp.main.news.sources.data.local.SourceDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,6 +19,10 @@ object DatabaseModule {
         Room.databaseBuilder(appContext, MainDatabase::class.java, DB_NAME)
             .fallbackToDestructiveMigration()
             .build()
+
+    @Provides
+    fun provideSourceDao(mainDatabase: MainDatabase): SourceDao =
+        mainDatabase.getSourceDao()
 
     private const val DB_NAME = "main.db"
 }

@@ -12,7 +12,7 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar">
+        android:background="@color/primaryColor">
 
         <androidx.legacy.widget.Space
             android:layout_width="match_parent"
@@ -23,10 +23,10 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_marginStart="58dp"
+            android:background="@color/primaryColor"
             android:paddingStart="4dp"
             android:paddingEnd="8dp"
-            app:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
-            app:title="@string/favorites_feature_favorites">
+            app:title="@string/feature_favorites">
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -50,6 +50,7 @@
                 android:focusable="true"
                 android:gravity="center"
                 android:text="@string/temporary_favorites"
+                android:textColor="@color/secondaryTextColor"
                 android:textSize="40sp" />
 
         </FrameLayout>

@@ -8,6 +8,7 @@ import com.dailiusprograming.newsapp.databinding.FragmentMainPagerBinding
 import com.dailiusprograming.newsapp.utils.activity.HandleBack
 import com.dailiusprograming.newsapp.utils.animation.ZoomOutPageTransformer
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
+import com.dailiusprograming.newsapp.utils.fragment.reduceDragSensitivity
 import com.dailiusprograming.newsapp.utils.view.viewBinding
 
 class MainPagerFragment : BaseFragment(R.layout.fragment_main_pager) {
@@ -51,7 +52,8 @@ class MainPagerFragment : BaseFragment(R.layout.fragment_main_pager) {
         binding.apply {
             mainViewPager.apply {
                 adapter = this@MainPagerFragment.adapter
-                setPageTransformer(ZoomOutPageTransformer())
+                reduceDragSensitivity()
+                setPageTransformer(ZoomOutPageTransformer( ))
                 registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                     override fun onPageSelected(position: Int) {
                         super.onPageSelected(position)
