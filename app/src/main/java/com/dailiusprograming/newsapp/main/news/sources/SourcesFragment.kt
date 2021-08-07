@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentSourcesBinding
+import com.dailiusprograming.newsapp.main.MainActivity
 import com.dailiusprograming.newsapp.main.news.NewsPagerContainer
 import com.dailiusprograming.newsapp.main.news.sources.data.model.SourceDomain
+import com.dailiusprograming.newsapp.utils.activity.displayMessageWithRefreshBtn
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import com.dailiusprograming.newsapp.utils.view.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,12 +46,14 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
             binding.sourceRecyclerView.isVisible = true
             recyclerAdapter.submitList(list)
         })
-//        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
-//            displayErrorMessage(error)
-//        })
+        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
+            (activity as MainActivity).displayMessageWithRefreshBtn(
+                error.message ?: getString(R.string.feature_sources_unknown_error)
+            ) { viewModel.onRefreshSelected() }
+        })
     }
 
-    private fun setUpOnRefreshListener(){
+    private fun setUpOnRefreshListener() {
         binding.swipeSourceRefreshLayout.setOnRefreshListener {
             viewModel.onRefreshSelected()
         }
