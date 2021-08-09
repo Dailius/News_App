@@ -20,10 +20,12 @@
     <string name="feature_sources_list_item_title">Sources title text</string>
     <string name="feature_sources_list_item_description">Sources description text</string>
     <string name="feature_sources_unknown_error">Sorry, something went wrong. Try again.</string>
+    <string name="sources_error_screen_message">This page didn\'t load the content correctly</string>
 
     <string name="feature_articles">Articles</string>
 
     <string name="feature_favorites">Favorites</string>
+    <string name="favorites_error_screen_message">You don\'t have any favorite article</string>
 
     <string name="feature_about">About</string>
 

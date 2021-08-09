@@ -19,10 +19,9 @@
         android:layout_height="wrap_content"
         android:background="@color/primaryColor"
         app:itemIconTint="@drawable/nav_bottom_colours_selector"
-        app:itemRippleColor="@color/secondaryColor"
+        app:itemRippleColor="@color/white"
         app:itemTextColor="@drawable/nav_bottom_colours_selector"
         app:labelVisibilityMode="selected"
-        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
         android:layout_gravity="bottom"
         app:menu="@menu/bottom_navigation_menu" />
 

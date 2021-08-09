@@ -46,8 +46,32 @@
                 android:clipToPadding="false"
                 android:scrollbars="vertical"
                 android:visibility="visible"
-                tools:listitem="@layout/fragment_sources_list_item" />
+                tools:listitem="@layout/fragment_sources_list_item" >
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <RelativeLayout
+                android:id="@+id/sourcesErrorsScreen"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/empty_chair"/>
+                <TextView
+                    android:theme="@style/Theme.NewsApp.ErrorScreenText"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sources_error_screen_message" />
+
+            </RelativeLayout>
 
         </FrameLayout>
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
