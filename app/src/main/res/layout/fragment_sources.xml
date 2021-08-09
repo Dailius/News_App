@@ -45,13 +45,14 @@
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
                 android:scrollbars="vertical"
-                android:visibility="gone"
+                android:visibility="visible"
                 tools:listitem="@layout/fragment_sources_list_item" >
 
             </androidx.recyclerview.widget.RecyclerView>
 
             <RelativeLayout
-                android:id="@+id/errorsScreen"
+                android:id="@+id/sourcesErrorsScreen"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView

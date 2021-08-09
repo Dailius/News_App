@@ -2,7 +2,6 @@ package com.dailiusprograming.newsapp.main.news.sources
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,18 +14,17 @@ import com.dailiusprograming.newsapp.utils.activity.displayMessageWithRefreshBtn
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import com.dailiusprograming.newsapp.utils.view.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
     private val binding by viewBinding(FragmentSourcesBinding::bind)
     private val viewModel: SourcesViewModel by viewModels()
-    private var recyclerAdapter: SourcesAdapter? = SourcesAdapter { source -> setUpOnItemClick(source) }
-
-    @Inject lateinit var mainActivity: MainActivity
+    private var recyclerAdapter: SourcesAdapter? =
+        SourcesAdapter { source -> setUpOnItemClick(source) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.swipeSourceRefreshLayout.isRefreshing = true
         setUpRecyclerView()
         setUpViewModelObserver()
         setUpOnRefreshListener()
@@ -46,14 +44,29 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
             binding.swipeSourceRefreshLayout.isRefreshing = result
         })
         viewModel.sourceList.observe(viewLifecycleOwner, { list ->
-            binding.sourceRecyclerView.isVisible = true
+            displaySourcesScreen()
             recyclerAdapter?.submitList(list)
         })
         viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
-            mainActivity.displayMessageWithRefreshBtn(
+            if (recyclerAdapter?.currentList?.isEmpty() == true) displayErrorScreen()
+
+            (activity as MainActivity).displayMessageWithRefreshBtn(
                 error.message ?: getString(R.string.feature_sources_unknown_error)
             ) { viewModel.onRefreshSelected() }
         })
+    }
+
+    private fun setScreenVisibilityState(stateRecyclerView: Int, stateErrorScreen: Int) {
+        binding.sourceRecyclerView.visibility = stateRecyclerView
+        binding.sourcesErrorsScreen.visibility = stateErrorScreen
+    }
+
+    private fun displaySourcesScreen() {
+        setScreenVisibilityState(View.VISIBLE, View.GONE)
+    }
+
+    private fun displayErrorScreen() {
+        setScreenVisibilityState(View.GONE, View.VISIBLE)
     }
 
     private fun setUpOnRefreshListener() {
