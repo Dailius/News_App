@@ -21,7 +21,7 @@ import javax.inject.Inject
 class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
     private val binding by viewBinding(FragmentSourcesBinding::bind)
     private val viewModel: SourcesViewModel by viewModels()
-    private val recyclerAdapter = SourcesAdapter { source -> setUpOnItemClick(source) }
+    private var recyclerAdapter: SourcesAdapter? = SourcesAdapter { source -> setUpOnItemClick(source) }
 
     @Inject lateinit var mainActivity: MainActivity
 
@@ -47,7 +47,7 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
         })
         viewModel.sourceList.observe(viewLifecycleOwner, { list ->
             binding.sourceRecyclerView.isVisible = true
-            recyclerAdapter.submitList(list)
+            recyclerAdapter?.submitList(list)
         })
         viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
             mainActivity.displayMessageWithRefreshBtn(
@@ -73,5 +73,10 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
 
     companion object {
         fun newInstance() = SourcesFragment()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        recyclerAdapter = null
     }
 }
