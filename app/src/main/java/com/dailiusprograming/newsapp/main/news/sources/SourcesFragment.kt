@@ -15,12 +15,15 @@ import com.dailiusprograming.newsapp.utils.activity.displayMessageWithRefreshBtn
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import com.dailiusprograming.newsapp.utils.view.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
     private val binding by viewBinding(FragmentSourcesBinding::bind)
     private val viewModel: SourcesViewModel by viewModels()
     private val recyclerAdapter = SourcesAdapter { source -> setUpOnItemClick(source) }
+
+    @Inject lateinit var mainActivity: MainActivity
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,7 +50,7 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
             recyclerAdapter.submitList(list)
         })
         viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
-            (activity as MainActivity).displayMessageWithRefreshBtn(
+            mainActivity.displayMessageWithRefreshBtn(
                 error.message ?: getString(R.string.feature_sources_unknown_error)
             ) { viewModel.onRefreshSelected() }
         })
