@@ -1,5 +1,9 @@
 package com.dailiusprograming.newsapp.main.news.sources.data.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class SourceDomain(
     val id: String,
     val name: String,
@@ -8,7 +12,7 @@ data class SourceDomain(
     val category: String,
     val language: String,
     val country: String
-) {
+): Parcelable {
     fun toEntity() = SourceEntity(
         id = id,
         name = name,
