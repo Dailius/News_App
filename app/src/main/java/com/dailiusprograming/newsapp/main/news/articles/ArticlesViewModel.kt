@@ -25,4 +25,9 @@ class ArticlesViewModel @Inject constructor(
 
     private var articlesFilterType: ArticlesFilterType = ArticlesFilterType.TODAY
     private lateinit var sourceId: String
+
+    fun onSourceIdLoaded(sourceId: String) {
+        this.sourceId = sourceId
+    }
+
 }
