@@ -6,6 +6,7 @@ import android.view.View
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentArticlesBinding
 import com.dailiusprograming.newsapp.main.news.NewsPagerContainer
+import com.dailiusprograming.newsapp.main.news.sources.data.model.SourceDomain
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import com.dailiusprograming.newsapp.utils.view.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,10 +39,11 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
 
     private fun setUpTextView(){
         onClickTextView()
+        val sourceDomain = arguments?.getParcelable<SourceDomain>(SOURCE_KEY)
         binding.textView.text =
             resources.getString(
                 R.string.temporary_transfer_args,
-                arguments?.getString(SOURCE_KEY),
+                sourceDomain?.name,
                 getString(R.string.temporary_articles)
             )
     }
@@ -62,9 +64,9 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
     companion object {
         private const val SOURCE_KEY = "source_key"
 
-        fun newInstance(args: String): ArticlesFragment {
+        fun newInstance(sourceDomain: SourceDomain): ArticlesFragment {
             val fragment = ArticlesFragment()
-            fragment.arguments = Bundle().apply { putString(SOURCE_KEY, args) }
+            fragment.arguments = Bundle().apply { putParcelable(SOURCE_KEY, sourceDomain) }
             return fragment
         }
     }
