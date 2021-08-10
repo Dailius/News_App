@@ -3,6 +3,7 @@ package com.dailiusprograming.newsapp.main.news.articles
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dailiusprograming.newsapp.R
@@ -19,6 +20,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
     private val binding by viewBinding(FragmentArticlesBinding::bind)
     private var sourceDomain: SourceDomain? = null
     private var recyclerAdapter: ArticlesAdapter? = null
+    private val viewModel: ArticlesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +32,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sourceDomain = arguments?.getParcelable(SOURCE_KEY)
+        viewModel.onSourceIdLoaded(sourceDomain?.id)
         setUpRecyclerView()
         setUpToolBar()
     }
