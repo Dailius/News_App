@@ -28,6 +28,9 @@
     <string name="articles_title">Article title text</string>
     <string name="articles_description">Article description text</string>
     <string name="articles_mark_favorites">Mark to favorites</string>
+    <string name="articles_chip_popular_today">Popular Today</string>
+    <string name="articles_chip_popular_all_time">Popular all time</string>
+    <string name="articles_chip_newest">Newest</string>
 
     <string name="feature_favorites">Favorites</string>
     <string name="favorites_error_screen_message">You don\'t have any favorite article</string>
