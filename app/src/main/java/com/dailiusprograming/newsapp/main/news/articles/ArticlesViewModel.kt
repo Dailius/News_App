@@ -17,10 +17,10 @@ class ArticlesViewModel @Inject constructor(
     private var _articleList = MutableLiveData<List<ArticleDomain>>()
     val articleList = _articleList
 
-    private val _isLoadingLiveData = MutableLiveData(false)
+    private var _isLoadingLiveData = MutableLiveData(false)
     val isLoadingLiveData = _isLoadingLiveData
 
-    private val _errorMessage = MutableLiveData<ArticleError>()
+    private var _errorMessage = MutableLiveData<ArticleError>()
     val errorMessage = _errorMessage
 
     private var articlesFilterType: ArticlesFilterType = ArticlesFilterType.TODAY
@@ -30,4 +30,26 @@ class ArticlesViewModel @Inject constructor(
         this.sourceId = sourceId
     }
 
+    fun onRefreshSelected() {
+        isLoadingLiveData.postValue(true)
+        articlesUseCase.getArticles(
+            sourceId = sourceId,
+            articlesFilterType = articlesFilterType
+        ).observeOn(scheduler)
+            .subscribe(
+                { result ->
+                    _articleList.postValue(result)
+                    _isLoadingLiveData.postValue(false)
+                },
+                { error ->
+                    _errorMessage.postValue(
+                        ArticleError(
+                            type = ArticleError.Type.ACTION,
+                            message = error.message
+                        )
+                    )
+                    isLoadingLiveData.postValue(false)
+                }
+            ).addDisposable()
+    }
 }
