@@ -8,7 +8,7 @@ import com.dailiusprograming.newsapp.main.news.articles.utils.DateUtil
 import io.reactivex.rxjava3.core.Observable
 import javax.inject.Inject
 
-class ArticlesLocalRepository @Inject constructor(
+class ArticleLocalRepository @Inject constructor(
     private val articleDao: ArticleDao
 ) {
     private fun updateTodayNews(sourceId: String): Observable<List<ArticleDomain>> =
