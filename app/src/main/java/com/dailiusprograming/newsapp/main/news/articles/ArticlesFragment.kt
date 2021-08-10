@@ -14,6 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
     private val binding by viewBinding(FragmentArticlesBinding::bind)
+    private var sourceDomain: SourceDomain? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +25,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sourceDomain = arguments?.getParcelable(SOURCE_KEY)
         setUpToolBar()
         setUpTextView()
     }
@@ -39,7 +41,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
 
     private fun setUpTextView(){
         onClickTextView()
-        val sourceDomain = arguments?.getParcelable<SourceDomain>(SOURCE_KEY)
+
         binding.textView.text =
             resources.getString(
                 R.string.temporary_transfer_args,
