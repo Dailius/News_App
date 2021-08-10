@@ -32,6 +32,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
 
     private fun setUpToolBar() {
         binding.toolbar.apply {
+            title = sourceDomain?.name
             setNavigationIcon(R.drawable.ic_arrow_back)
             setNavigationOnClickListener {
                 backToPreviousScreen()
