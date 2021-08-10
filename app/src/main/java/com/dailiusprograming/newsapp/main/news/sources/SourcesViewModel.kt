@@ -16,18 +16,18 @@ class SourcesViewModel @Inject constructor(
     private val sourcesUseCase: FetchSourcesUseCase,
     @Main private val scheduler: Scheduler
 ) : BaseViewModel() {
-    private val _sourceList = MutableLiveData<List<SourceDomain>>()
+    private var _sourceList = MutableLiveData<List<SourceDomain>>()
     val sourceList = _sourceList
 
-    private val _isLoadingLiveData = MutableLiveData(false)
+    private var _isLoadingLiveData = MutableLiveData(false)
     val isLoadingLiveData = _isLoadingLiveData
 
-    private val _errorMessage = LiveEvent<SourceError>()
+    private var _errorMessage = LiveEvent<SourceError>()
     val errorMessage = _errorMessage
 
     fun onRefreshSelected() {
         sourcesUseCase.getSources()
-        isLoadingLiveData.postValue(true)
+        _isLoadingLiveData.postValue(true)
         getSourceResponse()
     }
 
@@ -36,11 +36,12 @@ class SourcesViewModel @Inject constructor(
             .observeOn(scheduler)
             .subscribe(
                 { result ->
-                    sourceList.postValue(result)
-                    isLoadingLiveData.postValue(false)
+                    _sourceList.postValue(result)
+                    _isLoadingLiveData.postValue(false)
                 },
                 { error ->
-                    errorMessage.postValue(SourceError(error.message))
+                    _errorMessage.postValue(SourceError(error.message))
+                    _isLoadingLiveData.postValue(false)
                 }
             ).addDisposable()
     }
