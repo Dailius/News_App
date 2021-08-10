@@ -19,8 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
     private val binding by viewBinding(FragmentSourcesBinding::bind)
     private val viewModel: SourcesViewModel by viewModels()
-    private var recyclerAdapter: SourcesAdapter? =
-        SourcesAdapter { source -> setUpOnItemClick(source) }
+    private var recyclerAdapter: SourcesAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,6 +32,7 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
 
     private fun setUpRecyclerView() {
         binding.sourcesRecyclerView.apply {
+            recyclerAdapter = SourcesAdapter { source -> setUpOnItemClick(source) }
             adapter = recyclerAdapter
             layoutManager = LinearLayoutManager(activity)
             addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
