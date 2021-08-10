@@ -16,11 +16,12 @@
     <string name="temporary_about">ABOUT</string>
     <string name="temporary_transfer_args">Transferred argument from %s to page %s</string>
 
+    <string name="news_error_screen_message">This page didn\'t load the content correctly</string>
+
     <string name="feature_sources">Sources</string>
     <string name="feature_sources_list_item_title">Sources title text</string>
     <string name="feature_sources_list_item_description">Sources description text</string>
     <string name="feature_sources_unknown_error">Sorry, something went wrong. Try again.</string>
-    <string name="sources_error_screen_message">This page didn\'t load the content correctly</string>
 
     <string name="articles_feature">Articles</string>
     <string name="articles_text_author_and_date">Author – 2021–01–01 00:00:00</string>
