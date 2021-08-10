@@ -32,7 +32,7 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
     }
 
     private fun setUpRecyclerView() {
-        binding.sourceRecyclerView.apply {
+        binding.sourcesRecyclerView.apply {
             adapter = recyclerAdapter
             layoutManager = LinearLayoutManager(activity)
             addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
@@ -57,7 +57,7 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
     }
 
     private fun setScreenVisibilityState(stateRecyclerView: Int, stateErrorScreen: Int) {
-        binding.sourceRecyclerView.visibility = stateRecyclerView
+        binding.sourcesRecyclerView.visibility = stateRecyclerView
         binding.sourcesErrorsScreen.visibility = stateErrorScreen
     }
 
