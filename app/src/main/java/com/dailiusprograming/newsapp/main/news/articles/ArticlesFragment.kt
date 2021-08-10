@@ -3,9 +3,12 @@ package com.dailiusprograming.newsapp.main.news.articles
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.View
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentArticlesBinding
 import com.dailiusprograming.newsapp.main.news.NewsPagerContainer
+import com.dailiusprograming.newsapp.main.news.articles.data.model.ArticleDomain
 import com.dailiusprograming.newsapp.main.news.sources.data.model.SourceDomain
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import com.dailiusprograming.newsapp.utils.view.viewBinding
@@ -15,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
     private val binding by viewBinding(FragmentArticlesBinding::bind)
     private var sourceDomain: SourceDomain? = null
+    private var recyclerAdapter: ArticlesAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +30,8 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sourceDomain = arguments?.getParcelable(SOURCE_KEY)
+        setUpRecyclerView()
         setUpToolBar()
-        setUpTextView()
     }
 
     private fun setUpToolBar() {
@@ -40,21 +44,18 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
         }
     }
 
-    private fun setUpTextView(){
-        onClickTextView()
-
-        binding.textView.text =
-            resources.getString(
-                R.string.temporary_transfer_args,
-                sourceDomain?.name,
-                getString(R.string.temporary_articles)
-            )
+    private fun setUpRecyclerView() {
+        binding.articleRecyclerView.apply {
+            recyclerAdapter = ArticlesAdapter { article -> setUpOnItemClick(article) }
+            adapter = recyclerAdapter
+            layoutManager = LinearLayoutManager(activity)
+            addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+        }
     }
 
-    private fun onClickTextView() {
-        val args: String = resources.getString(R.string.temporary_articles)
-        binding.textView.setOnClickListener { openDetailsFragment(args)}
-        }
+    private fun setUpOnItemClick(articleDomain: ArticleDomain) {
+        openDetailsFragment(articleDomain.url)
+    }
 
     private fun openDetailsFragment(args: String) {
         (parentFragment as NewsPagerContainer).openDetailsFragment(args)
