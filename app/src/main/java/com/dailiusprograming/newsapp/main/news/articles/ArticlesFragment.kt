@@ -46,17 +46,27 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
             binding.swipeArticleRefreshLayout.isRefreshing = isEnabled
         })
         viewModel.articleList.observe(viewLifecycleOwner, { list ->
+            displayArticlesScreen()
             recyclerAdapter?.submitList(list)
         })
         viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
             if (recyclerAdapter?.currentList?.isEmpty() == true){
-//                displayErrorScreen()
+                displayErrorScreen()
             }
             (activity as MainActivity).displayMessageWithRefreshBtn(
                 error.message ?: getString(R.string.feature_sources_unknown_error)
             ) { viewModel.onRefreshSelected() }
         })
     }
+
+    private fun setScreenVisibilityState(stateRecyclerView: Int, stateErrorScreen: Int) {
+        binding.articleRecyclerView.visibility = stateRecyclerView
+        binding.articlesErrorsScreen.visibility = stateErrorScreen
+    }
+
+    private fun displayArticlesScreen() { setScreenVisibilityState(View.VISIBLE, View.GONE) }
+
+    private fun displayErrorScreen() { setScreenVisibilityState(View.GONE, View.VISIBLE) }
 
     private fun setUpToolBar() {
         binding.toolbar.apply {
