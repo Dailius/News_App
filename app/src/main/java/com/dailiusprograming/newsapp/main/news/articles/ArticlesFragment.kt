@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentArticlesBinding
+import com.dailiusprograming.newsapp.main.MainActivity
 import com.dailiusprograming.newsapp.main.news.NewsPagerContainer
 import com.dailiusprograming.newsapp.main.news.articles.data.model.ArticleDomain
 import com.dailiusprograming.newsapp.main.news.sources.data.model.SourceDomain
+import com.dailiusprograming.newsapp.utils.activity.displayMessageWithRefreshBtn
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import com.dailiusprograming.newsapp.utils.view.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,10 +33,29 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.swipeArticleRefreshLayout.isRefreshing = true
         sourceDomain = arguments?.getParcelable(SOURCE_KEY)
         viewModel.onSourceIdLoaded(sourceDomain?.id)
         setUpRecyclerView()
         setUpToolBar()
+        setUpViewModelObserver()
+    }
+
+    private fun setUpViewModelObserver(){
+        viewModel.isLoadingLiveData.observe(viewLifecycleOwner, { isEnabled ->
+            binding.swipeArticleRefreshLayout.isRefreshing = isEnabled
+        })
+        viewModel.articleList.observe(viewLifecycleOwner, { list ->
+            recyclerAdapter?.submitList(list)
+        })
+        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
+            if (recyclerAdapter?.currentList?.isEmpty() == true){
+//                displayErrorScreen()
+            }
+            (activity as MainActivity).displayMessageWithRefreshBtn(
+                error.message ?: getString(R.string.feature_sources_unknown_error)
+            ) { viewModel.onRefreshSelected() }
+        })
     }
 
     private fun setUpToolBar() {
