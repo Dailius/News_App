@@ -41,6 +41,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
         setUpToolBar()
         setUpViewModelObserver()
         setUpChipButtonsOnClickListener()
+        setUpOnRefreshListener()
         viewModel.onRefreshSelected()
     }
 
@@ -88,6 +89,12 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
     private fun displayArticlesScreen() { setScreenVisibilityState(View.VISIBLE, View.GONE) }
 
     private fun displayErrorScreen() { setScreenVisibilityState(View.GONE, View.VISIBLE) }
+
+    private fun setUpOnRefreshListener() {
+        binding.swipeArticleRefreshLayout.setOnRefreshListener {
+            viewModel.onRefreshSelected()
+        }
+    }
 
     private fun setUpToolBar() {
         binding.toolbar.apply {
