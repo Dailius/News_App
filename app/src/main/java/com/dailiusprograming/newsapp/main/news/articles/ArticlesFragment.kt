@@ -88,12 +88,12 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
 
     private fun handleScreenDisplay() {
         when (recyclerAdapter?.currentList?.size) {
-            0 -> displayErrorScreen()
+            0 -> displayNotificationScreen()
             else -> displayArticlesScreen()
         }
     }
 
-    private fun displayErrorScreen() {
+    private fun displayNotificationScreen() {
         setScreenVisibilityState(View.GONE, View.VISIBLE)
     }
 
@@ -103,7 +103,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
 
     private fun setScreenVisibilityState(stateRecyclerView: Int, stateErrorScreen: Int) {
         binding.articleRecyclerView.visibility = stateRecyclerView
-        binding.articlesErrorsScreen.visibility = stateErrorScreen
+        binding.articlesNotificationScreen.visibility = stateErrorScreen
     }
 
     private fun setUpToolBar() {

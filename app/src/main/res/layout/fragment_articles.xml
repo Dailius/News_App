@@ -112,7 +112,7 @@
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <RelativeLayout
-            android:id="@+id/articlesErrorsScreen"
+            android:id="@+id/articles_notification_screen"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:visibility="gone"
