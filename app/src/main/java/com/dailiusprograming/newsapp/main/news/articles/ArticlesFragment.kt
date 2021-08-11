@@ -136,4 +136,9 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
             return fragment
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        recyclerAdapter = null
+    }
 }
