@@ -11,6 +11,7 @@ import com.dailiusprograming.newsapp.databinding.FragmentArticlesBinding
 import com.dailiusprograming.newsapp.main.MainActivity
 import com.dailiusprograming.newsapp.main.news.NewsPagerContainer
 import com.dailiusprograming.newsapp.main.news.articles.data.model.ArticleDomain
+import com.dailiusprograming.newsapp.main.news.articles.utils.UiFilter
 import com.dailiusprograming.newsapp.main.news.sources.data.model.SourceDomain
 import com.dailiusprograming.newsapp.utils.activity.displayMessageWithRefreshBtn
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
@@ -39,6 +40,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
         setUpRecyclerView()
         setUpToolBar()
         setUpViewModelObserver()
+        setUpChipButtonsOnClickListener()
         viewModel.onRefreshSelected()
     }
 
@@ -58,6 +60,24 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
                 error.message ?: getString(R.string.feature_sources_unknown_error)
             ) { viewModel.onRefreshSelected() }
         })
+    }
+
+    private fun setUpChipButtonsOnClickListener() {
+        binding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                binding.popularTodayChip.id ->
+                    viewModel.onFilterTypeChange(UiFilter.Type.POPULAR_TODAY)
+
+                binding.popularAllTimeChip.id ->
+                    viewModel.onFilterTypeChange(UiFilter.Type.POPULAR_ALL_TIME)
+
+                binding.newestChip.id ->
+                    viewModel.onFilterTypeChange(UiFilter.Type.NEWEST)
+
+                else ->
+                    viewModel.onFilterTypeChange(UiFilter.Type.DEFAULT)
+            }
+        }
     }
 
     private fun setScreenVisibilityState(stateRecyclerView: Int, stateErrorScreen: Int) {
