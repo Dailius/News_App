@@ -87,8 +87,8 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
         fun newInstance() = SourcesFragment()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         recyclerAdapter = null
     }
 }
