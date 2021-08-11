@@ -39,6 +39,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
         setUpRecyclerView()
         setUpToolBar()
         setUpViewModelObserver()
+        viewModel.onRefreshSelected()
     }
 
     private fun setUpViewModelObserver(){

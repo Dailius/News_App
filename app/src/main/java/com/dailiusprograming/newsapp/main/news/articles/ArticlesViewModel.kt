@@ -9,10 +9,12 @@ import com.dailiusprograming.newsapp.main.news.articles.utils.ArticlesFilterType
 import com.dailiusprograming.newsapp.main.news.articles.utils.UiFilter
 import com.dailiusprograming.newsapp.utils.fragment.BaseViewModel
 import com.dailiusprograming.newsapp.utils.scheduler.Main
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Scheduler
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class ArticlesViewModel @Inject constructor(
     private val articlesUseCase: FetchArticlesUseCase,
     @Main private val scheduler: Scheduler
