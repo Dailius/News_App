@@ -11,6 +11,7 @@ import com.dailiusprograming.newsapp.databinding.FragmentArticlesBinding
 import com.dailiusprograming.newsapp.main.MainActivity
 import com.dailiusprograming.newsapp.main.news.NewsPagerContainer
 import com.dailiusprograming.newsapp.main.news.articles.data.model.ArticleDomain
+import com.dailiusprograming.newsapp.main.news.articles.data.model.ArticleError
 import com.dailiusprograming.newsapp.main.news.articles.utils.UiFilter
 import com.dailiusprograming.newsapp.main.news.sources.data.model.SourceDomain
 import com.dailiusprograming.newsapp.utils.activity.displayMessageWithRefreshBtn
@@ -34,33 +35,20 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.swipeArticleRefreshLayout.isRefreshing = true
+        setUpViewModelObserver()
         sourceDomain = arguments?.getParcelable(SOURCE_KEY)
         viewModel.onSourceIdLoaded(sourceDomain?.id)
         setUpRecyclerView()
         setUpToolBar()
-        setUpViewModelObserver()
         setUpChipButtonsOnClickListener()
         setUpOnRefreshListener()
         viewModel.onRefreshSelected()
     }
 
-    private fun setUpViewModelObserver(){
-        viewModel.isLoadingLiveData.observe(viewLifecycleOwner, { isEnabled ->
-            binding.swipeArticleRefreshLayout.isRefreshing = isEnabled
-        })
-        viewModel.articleList.observe(viewLifecycleOwner, { list ->
-            displayArticlesScreen()
-            recyclerAdapter?.submitList(list)
-        })
-        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
-            if (recyclerAdapter?.currentList?.isEmpty() == true){
-                displayErrorScreen()
-            }
-            (activity as MainActivity).displayMessageWithRefreshBtn(
-                error.message ?: getString(R.string.feature_sources_unknown_error)
-            ) { viewModel.onRefreshSelected() }
-        })
+    private fun setUpViewModelObserver() {
+        viewModel.isLoadingLiveData.observe(viewLifecycleOwner, ::isSwipeRefreshing)
+        viewModel.articleList.observe(viewLifecycleOwner, ::submitArticleList)
+        viewModel.errorMessage.observe(viewLifecycleOwner, ::handleErrorDisplay)
     }
 
     private fun setUpChipButtonsOnClickListener() {
@@ -81,19 +69,41 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
         }
     }
 
-    private fun setScreenVisibilityState(stateRecyclerView: Int, stateErrorScreen: Int) {
-        binding.articleRecyclerView.visibility = stateRecyclerView
-        binding.articlesErrorsScreen.visibility = stateErrorScreen
-    }
-
-    private fun displayArticlesScreen() { setScreenVisibilityState(View.VISIBLE, View.GONE) }
-
-    private fun displayErrorScreen() { setScreenVisibilityState(View.GONE, View.VISIBLE) }
-
     private fun setUpOnRefreshListener() {
         binding.swipeArticleRefreshLayout.setOnRefreshListener {
             viewModel.onRefreshSelected()
         }
+    }
+
+    private fun isSwipeRefreshing(isEnabled: Boolean) {
+        binding.swipeArticleRefreshLayout.isRefreshing = isEnabled
+    }
+
+    private fun handleErrorDisplay(error: ArticleError) {
+        handleScreenDisplay()
+        (activity as MainActivity).displayMessageWithRefreshBtn(
+            error.message ?: getString(R.string.feature_sources_unknown_error)
+        ) { viewModel.onRefreshSelected() }
+    }
+
+    private fun handleScreenDisplay() {
+        when (recyclerAdapter?.currentList?.size) {
+            0 -> displayErrorScreen()
+            else -> displayArticlesScreen()
+        }
+    }
+
+    private fun displayErrorScreen() {
+        setScreenVisibilityState(View.GONE, View.VISIBLE)
+    }
+
+    private fun displayArticlesScreen() {
+        setScreenVisibilityState(View.VISIBLE, View.GONE)
+    }
+
+    private fun setScreenVisibilityState(stateRecyclerView: Int, stateErrorScreen: Int) {
+        binding.articleRecyclerView.visibility = stateRecyclerView
+        binding.articlesErrorsScreen.visibility = stateErrorScreen
     }
 
     private fun setUpToolBar() {
@@ -113,6 +123,12 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
             layoutManager = LinearLayoutManager(activity)
             addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         }
+    }
+
+    private fun submitArticleList(list: List<ArticleDomain>) {
+        recyclerAdapter?.submitList(list)
+        binding.articleRecyclerView.adapter = recyclerAdapter
+        handleScreenDisplay()
     }
 
     private fun setUpOnItemClick(articleDomain: ArticleDomain) {

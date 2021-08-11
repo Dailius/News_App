@@ -32,6 +32,7 @@ class ArticlesViewModel @Inject constructor(
     private lateinit var sourceId: String
 
     fun onSourceIdLoaded(sourceId: String?) {
+        _isLoadingLiveData.postValue(true)
         if (sourceId != null) {
             this.sourceId = sourceId
         }
