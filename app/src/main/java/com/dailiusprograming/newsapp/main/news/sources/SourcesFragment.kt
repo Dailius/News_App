@@ -10,6 +10,7 @@ import com.dailiusprograming.newsapp.databinding.FragmentSourcesBinding
 import com.dailiusprograming.newsapp.main.MainActivity
 import com.dailiusprograming.newsapp.main.news.NewsPagerContainer
 import com.dailiusprograming.newsapp.main.news.sources.data.model.SourceDomain
+import com.dailiusprograming.newsapp.main.news.sources.data.model.SourceError
 import com.dailiusprograming.newsapp.utils.activity.displayMessageWithRefreshBtn
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import com.dailiusprograming.newsapp.utils.view.viewBinding
@@ -23,11 +24,16 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.swipeSourceRefreshLayout.isRefreshing = true
         setUpRecyclerView()
         setUpViewModelObserver()
         setUpOnRefreshListener()
         viewModel.onRefreshSelected()
+    }
+
+    private fun setUpViewModelObserver() {
+        viewModel.isLoadingLiveData.observe(viewLifecycleOwner, ::isSwipeRefreshing)
+        viewModel.sourceList.observe(viewLifecycleOwner, ::submitSourceList)
+        viewModel.errorMessage.observe(viewLifecycleOwner, ::handleErrorDisplay)
     }
 
     private fun setUpRecyclerView() {
@@ -39,21 +45,31 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
         }
     }
 
-    private fun setUpViewModelObserver() {
-        viewModel.isLoadingLiveData.observe(viewLifecycleOwner, { result ->
-            binding.swipeSourceRefreshLayout.isRefreshing = result
-        })
-        viewModel.sourceList.observe(viewLifecycleOwner, { list ->
-            displaySourcesScreen()
-            recyclerAdapter?.submitList(list)
-        })
-        viewModel.errorMessage.observe(viewLifecycleOwner, { error ->
-            if (recyclerAdapter?.currentList?.isEmpty() == true) displayErrorScreen()
+    private fun submitSourceList(list: List<SourceDomain>) {
+        recyclerAdapter?.submitList(list)
+        binding.sourcesRecyclerView.adapter = recyclerAdapter
+    }
 
-            (activity as MainActivity).displayMessageWithRefreshBtn(
-                error.message ?: getString(R.string.feature_sources_unknown_error)
-            ) { viewModel.onRefreshSelected() }
-        })
+    private fun handleErrorDisplay(error: SourceError) {
+        handleScreenDisplay()
+        (activity as MainActivity).displayMessageWithRefreshBtn(
+            error.message ?: getString(R.string.feature_sources_unknown_error)
+        ) { viewModel.onRefreshSelected() }
+    }
+
+    private fun handleScreenDisplay() {
+        when (recyclerAdapter?.currentList?.size) {
+            0 -> displayNotificationScreen()
+            else -> displaySourcesScreen()
+        }
+    }
+
+    private fun displayNotificationScreen() {
+        setScreenVisibilityState(View.GONE, View.VISIBLE)
+    }
+
+    private fun displaySourcesScreen() {
+        setScreenVisibilityState(View.VISIBLE, View.GONE)
     }
 
     private fun setScreenVisibilityState(stateRecyclerView: Int, stateErrorScreen: Int) {
@@ -61,18 +77,14 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
         binding.sourcesErrorsScreen.visibility = stateErrorScreen
     }
 
-    private fun displaySourcesScreen() {
-        setScreenVisibilityState(View.VISIBLE, View.GONE)
-    }
-
-    private fun displayErrorScreen() {
-        setScreenVisibilityState(View.GONE, View.VISIBLE)
-    }
-
     private fun setUpOnRefreshListener() {
         binding.swipeSourceRefreshLayout.setOnRefreshListener {
             viewModel.onRefreshSelected()
         }
+    }
+
+    private fun isSwipeRefreshing(isEnabled: Boolean) {
+        binding.swipeSourceRefreshLayout.isRefreshing = isEnabled
     }
 
     private fun openArticlesFragment(sourceDomain: SourceDomain) {

@@ -14,7 +14,4 @@ class SourceLocalRepository @Inject constructor(
 
     fun insertSources(sources: List<SourceDomain>) =
         sourceDao.insertSources(sources.map(SourceDomain::toEntity))
-
-    fun clearSources() =
-        sourceDao.clearSources()
 }

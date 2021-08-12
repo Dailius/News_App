@@ -11,10 +11,9 @@ class FetchSourcesUseCase @Inject constructor(
     fun getSources(): Observable<List<SourceDomain>> =
         Observable.merge(
             localRepository.getSources(),
-            remoteRepository.getSources()
+            remoteRepository.getSources().onErrorComplete()
                 .flatMapCompletable { list ->
-                    localRepository.clearSources()
-                        .andThen(localRepository.insertSources(list))
+                    localRepository.insertSources(list)
                 }.toObservable()
         )
 }

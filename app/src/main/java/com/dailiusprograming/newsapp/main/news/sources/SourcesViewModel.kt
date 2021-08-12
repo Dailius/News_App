@@ -26,7 +26,6 @@ class SourcesViewModel @Inject constructor(
     val errorMessage = _errorMessage
 
     fun onRefreshSelected() {
-        sourcesUseCase.getSources()
         _isLoadingLiveData.postValue(true)
         getSourceResponse()
     }
