@@ -22,6 +22,7 @@ class FetchArticlesUseCase @Inject constructor(
                 sourceId = sourceId
             ),
             remoteRepository.getArticles(sourceId = sourceId)
+                .onErrorComplete()
                 .flatMapCompletable { list ->
                     localRepository.insertNews(list)
                 }.toObservable()

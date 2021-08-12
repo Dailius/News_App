@@ -80,16 +80,18 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
     }
 
     private fun handleErrorDisplay(error: ArticleError) {
-        handleScreenDisplay()
+        val isAdapterListEmpty = recyclerAdapter?.currentList?.isEmpty() == true
+        handleScreenDisplay(isAdapterListEmpty)
+
         (activity as MainActivity).displayMessageWithRefreshBtn(
             error.message ?: getString(R.string.feature_sources_unknown_error)
         ) { viewModel.onRefreshSelected() }
     }
 
-    private fun handleScreenDisplay() {
-        when (recyclerAdapter?.currentList?.size) {
-            0 -> displayNotificationScreen()
-            else -> displayArticlesScreen()
+    private fun handleScreenDisplay(isEmptyList: Boolean) {
+        when (isEmptyList) {
+            true -> displayNotificationScreen()
+            false -> displayArticlesScreen()
         }
     }
 
@@ -128,7 +130,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
     private fun submitArticleList(list: List<ArticleDomain>) {
         recyclerAdapter?.submitList(list)
         binding.articleRecyclerView.adapter = recyclerAdapter
-        handleScreenDisplay()
+        handleScreenDisplay(list.isEmpty())
     }
 
     private fun setUpOnItemClick(articleDomain: ArticleDomain) {
