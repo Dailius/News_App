@@ -23,7 +23,6 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.swipeSourceRefreshLayout.isRefreshing = true
         setUpRecyclerView()
         setUpViewModelObserver()
         setUpOnRefreshListener()
