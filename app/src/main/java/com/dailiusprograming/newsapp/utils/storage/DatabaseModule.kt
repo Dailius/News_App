@@ -2,6 +2,7 @@ package com.dailiusprograming.newsapp.utils.storage
 
 import android.content.Context
 import androidx.room.Room
+import com.dailiusprograming.newsapp.main.news.articles.data.local.ArticleDao
 import com.dailiusprograming.newsapp.main.news.sources.data.local.SourceDao
 import dagger.Module
 import dagger.Provides
@@ -23,6 +24,10 @@ object DatabaseModule {
     @Provides
     fun provideSourceDao(mainDatabase: MainDatabase): SourceDao =
         mainDatabase.getSourceDao()
+
+    @Provides
+    fun provideArticleDao(mainDatabase: MainDatabase): ArticleDao =
+        mainDatabase.getArticleDao()
 
     private const val DB_NAME = "main.db"
 }

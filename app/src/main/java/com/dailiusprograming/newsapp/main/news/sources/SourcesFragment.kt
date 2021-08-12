@@ -75,21 +75,20 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
         }
     }
 
-    private fun openArticlesFragment(args: String) {
-        (parentFragment as NewsPagerContainer).openArticlesFragment(args)
+    private fun openArticlesFragment(sourceDomain: SourceDomain) {
+        (parentFragment as NewsPagerContainer).openArticlesFragment(sourceDomain)
     }
 
     private fun setUpOnItemClick(sourceDomain: SourceDomain) {
-        val args: String = sourceDomain.id
-        openArticlesFragment(args)
+        openArticlesFragment(sourceDomain)
     }
 
     companion object {
         fun newInstance() = SourcesFragment()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         recyclerAdapter = null
     }
 }

@@ -16,13 +16,21 @@
     <string name="temporary_about">ABOUT</string>
     <string name="temporary_transfer_args">Transferred argument from %s to page %s</string>
 
+    <string name="news_error_screen_message">This page didn\'t load the content correctly</string>
+
     <string name="feature_sources">Sources</string>
     <string name="feature_sources_list_item_title">Sources title text</string>
     <string name="feature_sources_list_item_description">Sources description text</string>
     <string name="feature_sources_unknown_error">Sorry, something went wrong. Try again.</string>
-    <string name="sources_error_screen_message">This page didn\'t load the content correctly</string>
 
-    <string name="feature_articles">Articles</string>
+    <string name="articles_feature">Articles</string>
+    <string name="articles_text_author_and_date">Author – 2021–01–01 00:00:00</string>
+    <string name="articles_title">Article title text</string>
+    <string name="articles_description">Article description text</string>
+    <string name="articles_mark_favorites">Mark to favorites</string>
+    <string name="articles_chip_popular_today">Popular Today</string>
+    <string name="articles_chip_popular_all_time">Popular all time</string>
+    <string name="articles_chip_newest">Newest</string>
 
     <string name="feature_favorites">Favorites</string>
     <string name="favorites_error_screen_message">You don\'t have any favorite article</string>

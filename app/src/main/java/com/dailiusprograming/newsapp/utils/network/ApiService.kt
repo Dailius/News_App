@@ -1,6 +1,7 @@
 package com.dailiusprograming.newsapp.utils.network
 
 import com.dailiusprograming.newsapp.BuildConfig
+import com.dailiusprograming.newsapp.main.news.articles.data.model.ArticleResponse
 import com.dailiusprograming.newsapp.main.news.sources.data.model.SourceResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
@@ -17,5 +18,5 @@ interface ApiService {
     fun getAllNews(
         @Query("apiKey") apiKey: String = BuildConfig.NEWS_API_KEY,
         @QueryMap apiServiceQueryMap: Map<String, String>
-    ): Single<Any>
+    ): Single<ArticleResponse>
 }

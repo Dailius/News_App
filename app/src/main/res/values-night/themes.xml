@@ -52,4 +52,22 @@
         <item name="android:letterSpacing">0.01</item>
         <item name="android:gravity">center_horizontal|center_vertical</item>
     </style>
+
+    <style name="Theme.NewsApp.ArticlesDate">
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#4A6572</item>
+    </style>
+
+    <style name="Theme.NewsApp.ArticlesTitle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="Theme.NewsApp.ArticlesTitleDescription">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">#000000</item>
+    </style>
 </resources>
