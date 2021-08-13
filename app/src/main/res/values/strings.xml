@@ -32,6 +32,14 @@
     <string name="articles_chip_popular_all_time">Popular all time</string>
     <string name="articles_chip_newest">Newest</string>
 
+    <string name="details_author_and_date">Author - 2021-01–01 00:00:00</string>
+    <string name="details_set_favorites">Set/unset to favorites</string>
+    <string name="details_title">Article detail title</string>
+    <string name="details_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</string>
+    <string name="details_url"><u>https://www.urlurlurl.com/</u></string>
+    <string name="details_author_and_dates">%s - %s</string>
+    <string name="details_transition">DetailsCollapsingToolbarTransition</string>
+
     <string name="favorites_feature">Favorites</string>
     <string name="favorites_error_screen_message">You don\'t have any favorite article</string>
 

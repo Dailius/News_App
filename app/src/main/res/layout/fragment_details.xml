@@ -37,7 +37,7 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/detailsImageView"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
@@ -46,7 +46,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@mipmap/ic_launcher" />
+                    app:srcCompat="@drawable/empty_image" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -74,23 +74,88 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:id="@+id/AuthorAndDateTextView"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
-                android:layout_marginBottom="32dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:text="@string/temporary_details"
-                android:textColor="@color/secondaryTextColor"
-                android:textSize="40sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="top"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="10sp"
+                android:textColor="#4A6572"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/favoriteCheckBox"
+                app:layout_constraintStart_toStartOf="@id/constraint"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/details_author_and_date" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/favoriteCheckBox"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/icon_favorites"
+                android:button="@null"
+                android:checked="false"
+                android:contentDescription="@string/details_set_favorites"
+                app:layout_constraintBottom_toBottomOf="@+id/AuthorAndDateTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/AuthorAndDateTextView" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/titleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="30dp"
+                android:gravity="top"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="3sp"
+                android:text="@string/details_title"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@id/constraint"
+                app:layout_constraintStart_toStartOf="@id/constraint"
+                app:layout_constraintTop_toBottomOf="@id/AuthorAndDateTextView" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/descriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="22dp"
+                android:gravity="top"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="5sp"
+                android:text="@string/details_lorem_ipsum"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/linkTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="21dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="top"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="10sp"
+                android:text="@string/details_url"
+                android:textColor="#0000FF"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
