@@ -53,7 +53,7 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
     private fun handleErrorDisplay(error: SourceError) {
         handleScreenDisplay()
         (activity as MainActivity).displayMessageWithRefreshBtn(
-            error.message ?: getString(R.string.feature_sources_unknown_error)
+            error.message ?: getString(R.string.sources_unknown_error)
         ) { viewModel.onRefreshSelected() }
     }
 

@@ -84,7 +84,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
         handleScreenDisplay(isAdapterListEmpty)
 
         (activity as MainActivity).displayMessageWithRefreshBtn(
-            error.message ?: getString(R.string.feature_sources_unknown_error)
+            error.message ?: getString(R.string.sources_unknown_error)
         ) { viewModel.onRefreshSelected() }
     }
 
