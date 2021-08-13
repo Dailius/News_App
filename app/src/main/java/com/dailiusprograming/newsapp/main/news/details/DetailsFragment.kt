@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.View
 import androidx.core.view.ViewCompat
+import androidx.fragment.app.viewModels
 import coil.load
 import coil.size.ViewSizeResolver
 import com.dailiusprograming.newsapp.R
@@ -17,7 +18,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailsFragment : BaseFragment(R.layout.fragment_details) {
     private val binding by viewBinding(FragmentDetailsBinding::bind)
-    private var articleDomain: ArticleDomain? = null
+    private var articleDetails: ArticleDomain? = null
+    private val viewModel: DetailsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +30,21 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        articleDomain = arguments?.getParcelable(ARTICLE_KEY)
-        setUpWidgets()
+        getParcelableArgs()
+        setUpViewModelObserver()
     }
 
-    private fun setUpWidgets() {
+    private fun getParcelableArgs(){
+        val args: ArticleDomain? = arguments?.getParcelable(ARTICLE_KEY)
+        viewModel.onArticleDetailsLoaded(args)
+    }
+
+    private fun setUpViewModelObserver() {
+        viewModel.articleDetails.observe(viewLifecycleOwner, ::setUpWidgets)
+    }
+
+    private fun setUpWidgets(articleDomain: ArticleDomain) {
+        articleDetails = articleDomain
         setUpAllToolbars()
         setUpTextView()
         setUpImageView()
@@ -59,7 +71,7 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
 
     private fun setUpCollapsingToolbar() {
         binding.collapsingToolbar.apply {
-            title = articleDomain?.title
+            title = articleDetails?.title
             setExpandedTitleColor(context.getColor(android.R.color.white))
             setCollapsedTitleTextColor(context.getColor(R.color.white))
             setContentScrimColor(context.getColor(R.color.primaryColor))
@@ -71,18 +83,18 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
             AuthorAndDateTextView.text =
                 context?.getString(
                     R.string.details_author_and_dates,
-                    articleDomain?.author,
-                    articleDomain?.publishedAt
+                    articleDetails?.author,
+                    articleDetails?.publishedAt
                 )
-            titleTextView.text = articleDomain?.title
-            descriptionTextView.text = articleDomain?.description
-            linkTextView.text = articleDomain?.url
+            titleTextView.text = articleDetails?.title
+            descriptionTextView.text = articleDetails?.description
+            linkTextView.text = articleDetails?.url
         }
     }
 
     private fun setUpImageView() {
         binding.apply {
-            detailsImageView.load(articleDomain?.urlToImage) {
+            detailsImageView.load(articleDetails?.urlToImage) {
                 crossfade(enable = true)
                 crossfade(durationMillis = 500)
                 size(ViewSizeResolver(detailsImageView))
