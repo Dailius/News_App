@@ -3,6 +3,9 @@ package com.dailiusprograming.newsapp.main.news.details
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.View
+import androidx.core.view.ViewCompat
+import coil.load
+import coil.size.ViewSizeResolver
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentDetailsBinding
 import com.dailiusprograming.newsapp.main.MainActivity
@@ -26,11 +29,22 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         articleDomain = arguments?.getParcelable(ARTICLE_KEY)
-        setUpToolBar()
-        setUpTextView()
+        setUpWidgets()
     }
 
-    private fun setUpToolBar() {
+    private fun setUpWidgets() {
+        setUpAllToolbars()
+        setUpTextView()
+        setUpImageView()
+    }
+
+    private fun setUpAllToolbars() {
+        setUpToolbar()
+        setUpAppBarLayoutTransition()
+        setUpCollapsingToolbar()
+    }
+
+    private fun setUpToolbar() {
         binding.toolbar.apply {
             setNavigationIcon(R.drawable.ic_arrow_back)
             setNavigationOnClickListener {
@@ -39,8 +53,41 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
         }
     }
 
+    private fun setUpAppBarLayoutTransition() {
+        ViewCompat.setTransitionName(binding.appBarLayout, getString(R.string.details_transition))
+    }
+
+    private fun setUpCollapsingToolbar() {
+        binding.collapsingToolbar.apply {
+            title = articleDomain?.title
+            setExpandedTitleColor(context.getColor(android.R.color.white))
+            setCollapsedTitleTextColor(context.getColor(R.color.white))
+            setContentScrimColor(context.getColor(R.color.primaryColor))
+        }
+    }
+
     private fun setUpTextView() {
-        binding.textView.text = articleDomain.toString()
+        binding.apply {
+            AuthorAndDateTextView.text =
+                context?.getString(
+                    R.string.details_author_and_dates,
+                    articleDomain?.author,
+                    articleDomain?.publishedAt
+                )
+            titleTextView.text = articleDomain?.title
+            descriptionTextView.text = articleDomain?.description
+            linkTextView.text = articleDomain?.url
+        }
+    }
+
+    private fun setUpImageView() {
+        binding.apply {
+            detailsImageView.load(articleDomain?.urlToImage) {
+                crossfade(enable = true)
+                crossfade(durationMillis = 500)
+                size(ViewSizeResolver(detailsImageView))
+            }
+        }
     }
 
     private fun backToPreviousScreen() {
