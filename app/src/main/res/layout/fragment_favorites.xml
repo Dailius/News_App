@@ -26,7 +26,7 @@
             android:background="@color/primaryColor"
             android:paddingStart="4dp"
             android:paddingEnd="8dp"
-            app:title="@string/feature_favorites">
+            app:title="@string/favorites_feature">
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
