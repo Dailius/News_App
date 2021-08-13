@@ -2,6 +2,7 @@ package com.dailiusprograming.newsapp.main.favorites
 
 import android.os.Bundle
 import com.dailiusprograming.newsapp.R
+import com.dailiusprograming.newsapp.main.news.articles.data.model.ArticleDomain
 import com.dailiusprograming.newsapp.main.news.details.DetailsFragment
 import com.dailiusprograming.newsapp.main.pager.MainPagerAdapter
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
@@ -27,9 +28,9 @@ class FavoritesFragmentContainer : BaseFragment(R.layout.fragment_favorites_cont
         )
     }
 
-    override fun openDetailsFragment(args: String) {
+    override fun openDetailsFragment(articleDomain: ArticleDomain) {
         openFragment(
-            DetailsFragment.newInstance(args),
+            DetailsFragment.newInstance(articleDomain),
             addToBackStack = true,
             pageConstFromMainPagerAdapter = MainPagerAdapter.FAVORITES_PAGE,
         )

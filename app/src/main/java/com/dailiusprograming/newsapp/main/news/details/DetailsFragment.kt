@@ -6,6 +6,7 @@ import android.view.View
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentDetailsBinding
 import com.dailiusprograming.newsapp.main.MainActivity
+import com.dailiusprograming.newsapp.main.news.articles.data.model.ArticleDomain
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import com.dailiusprograming.newsapp.utils.view.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,6 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailsFragment : BaseFragment(R.layout.fragment_details) {
     private val binding by viewBinding(FragmentDetailsBinding::bind)
+    private var articleDomain: ArticleDomain? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +25,7 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        articleDomain = arguments?.getParcelable(ARTICLE_KEY)
         setUpToolBar()
         setUpTextView()
     }
@@ -37,12 +40,7 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
     }
 
     private fun setUpTextView() {
-        binding.textView.text =
-            resources.getString(
-                R.string.temporary_transfer_args,
-                arguments?.getString(ARTICLE_KEY),
-                getString(R.string.temporary_details)
-            )
+        binding.textView.text = articleDomain.toString()
     }
 
     private fun backToPreviousScreen() {
@@ -52,9 +50,9 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
     companion object {
         private const val ARTICLE_KEY = "article_key"
 
-        fun newInstance(args: String): DetailsFragment {
+        fun newInstance(articleDomain: ArticleDomain): DetailsFragment {
             val fragment = DetailsFragment()
-            fragment.arguments = Bundle().apply { putString(ARTICLE_KEY, args) }
+            fragment.arguments = Bundle().apply { putParcelable(ARTICLE_KEY, articleDomain) }
             return fragment
         }
     }

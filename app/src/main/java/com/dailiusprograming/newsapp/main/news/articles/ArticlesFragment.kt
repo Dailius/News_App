@@ -134,11 +134,11 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
     }
 
     private fun setUpOnItemClick(articleDomain: ArticleDomain) {
-        openDetailsFragment(articleDomain.url)
+        openDetailsFragment(articleDomain)
     }
 
-    private fun openDetailsFragment(args: String) {
-        (parentFragment as NewsPagerContainer).openDetailsFragment(args)
+    private fun openDetailsFragment(articleDomain: ArticleDomain) {
+        (parentFragment as NewsPagerContainer).openDetailsFragment(articleDomain)
     }
 
     private fun backToPreviousScreen() {

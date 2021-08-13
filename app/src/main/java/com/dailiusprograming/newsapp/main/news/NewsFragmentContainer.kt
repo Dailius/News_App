@@ -3,6 +3,7 @@ package com.dailiusprograming.newsapp.main.news
 import android.os.Bundle
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.main.news.articles.ArticlesFragment
+import com.dailiusprograming.newsapp.main.news.articles.data.model.ArticleDomain
 import com.dailiusprograming.newsapp.main.news.details.DetailsFragment
 import com.dailiusprograming.newsapp.main.news.sources.SourcesFragment
 import com.dailiusprograming.newsapp.main.news.sources.data.model.SourceDomain
@@ -27,8 +28,8 @@ class NewsFragmentContainer : BaseFragment(R.layout.fragment_news_container), Ne
         openFragment(ArticlesFragment.newInstance(sourceDomain), addToBackStack = true)
     }
 
-    override fun openDetailsFragment(args: String) {
-        openFragment(DetailsFragment.newInstance(args), addToBackStack = true)
+    override fun openDetailsFragment(articleDomain: ArticleDomain) {
+        openFragment(DetailsFragment.newInstance(articleDomain), addToBackStack = true)
     }
 
     override fun onBackPressed() = childFragmentManager.popBackStackImmediate()
