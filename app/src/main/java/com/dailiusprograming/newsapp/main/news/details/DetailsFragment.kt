@@ -47,6 +47,7 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
         articleDetails = articleDomain
         setUpAllToolbars()
         setUpTextView()
+        setUpFavoritesCheckBox()
         setUpImageView()
     }
 
@@ -90,6 +91,10 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
             descriptionTextView.text = articleDetails?.description
             linkTextView.text = articleDetails?.url
         }
+    }
+
+    private fun setUpFavoritesCheckBox(){
+        binding.favoriteCheckBox.isChecked = articleDetails?.favorites ?: false
     }
 
     private fun setUpImageView() {
