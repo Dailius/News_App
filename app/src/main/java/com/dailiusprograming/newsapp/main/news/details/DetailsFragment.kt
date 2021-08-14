@@ -11,6 +11,8 @@ import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentDetailsBinding
 import com.dailiusprograming.newsapp.main.MainActivity
 import com.dailiusprograming.newsapp.main.news.articles.data.model.ArticleDomain
+import com.dailiusprograming.newsapp.main.news.articles.data.model.ArticleError
+import com.dailiusprograming.newsapp.utils.activity.displayMessage
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import com.dailiusprograming.newsapp.utils.view.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,7 +42,14 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
     }
 
     private fun setUpViewModelObserver() {
+        viewModel.errorMessage.observe(viewLifecycleOwner, ::displayError)
         viewModel.articleDetails.observe(viewLifecycleOwner, ::setUpWidgets)
+    }
+
+    private fun displayError(error: ArticleError) {
+        (activity as MainActivity).displayMessage(
+            error.message ?: getString(R.string.sources_unknown_error)
+        )
     }
 
     private fun setUpWidgets(articleDomain: ArticleDomain) {
