@@ -3,7 +3,9 @@ package com.dailiusprograming.newsapp.main.news.details
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.viewModels
 import coil.load
 import coil.size.ViewSizeResolver
@@ -65,6 +67,7 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
         setUpToolbar()
         setUpAppBarLayoutTransition()
         setUpCollapsingToolbar()
+        applyWindowInsetsListener()
     }
 
     private fun setUpToolbar() {
@@ -86,6 +89,16 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
             setExpandedTitleColor(context.getColor(android.R.color.white))
             setCollapsedTitleTextColor(context.getColor(R.color.white))
             setContentScrimColor(context.getColor(R.color.primaryColor))
+        }
+    }
+
+    private fun applyWindowInsetsListener(){
+        binding.apply {
+            ViewCompat.setOnApplyWindowInsetsListener(appBarLayout) { _, insets ->
+                (binding.toolbar.layoutParams as ViewGroup.MarginLayoutParams).topMargin =
+                    insets.getInsets(WindowInsetsCompat.Type.systemBars()).top
+                WindowInsetsCompat.CONSUMED
+            }
         }
     }
 
