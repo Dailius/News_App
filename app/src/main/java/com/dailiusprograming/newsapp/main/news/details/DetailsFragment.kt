@@ -34,7 +34,7 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
         setUpViewModelObserver()
     }
 
-    private fun getParcelableArgs(){
+    private fun getParcelableArgs() {
         val args: ArticleDomain? = arguments?.getParcelable(ARTICLE_KEY)
         viewModel.onArticleDetailsLoaded(args)
     }
@@ -47,8 +47,9 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
         articleDetails = articleDomain
         setUpAllToolbars()
         setUpTextView()
-        setUpFavoritesCheckBox()
         setUpImageView()
+        setUpFavoritesCheckBox()
+        setUpFavoritesClickListener()
     }
 
     private fun setUpAllToolbars() {
@@ -93,8 +94,14 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
         }
     }
 
-    private fun setUpFavoritesCheckBox(){
+    private fun setUpFavoritesCheckBox() {
         binding.favoriteCheckBox.isChecked = articleDetails?.favorites ?: false
+    }
+
+    private fun setUpFavoritesClickListener() {
+        binding.favoriteCheckBox.apply {
+            setOnClickListener { viewModel.updateFavoritesItem(isChecked) }
+        }
     }
 
     private fun setUpImageView() {
