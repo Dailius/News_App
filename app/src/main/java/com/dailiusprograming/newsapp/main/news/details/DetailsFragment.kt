@@ -36,6 +36,7 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
         super.onViewCreated(view, savedInstanceState)
         getParcelableArgs()
         setUpViewModelObserver()
+        applyWindowInsetsListener()
     }
 
     private fun getParcelableArgs() {
@@ -56,18 +57,17 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
 
     private fun setUpWidgets(articleDomain: ArticleDomain) {
         articleDetails = articleDomain
-        setUpAllToolbars()
         setUpTextView()
         setUpImageView()
         setUpFavoritesCheckBox()
         setUpFavoritesClickListener()
+        setUpAllToolbars()
     }
 
     private fun setUpAllToolbars() {
         setUpToolbar()
         setUpAppBarLayoutTransition()
         setUpCollapsingToolbar()
-        applyWindowInsetsListener()
     }
 
     private fun setUpToolbar() {
