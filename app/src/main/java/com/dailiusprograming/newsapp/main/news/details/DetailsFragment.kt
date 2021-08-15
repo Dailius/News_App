@@ -1,5 +1,7 @@
 package com.dailiusprograming.newsapp.main.news.details
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.View
@@ -60,8 +62,9 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
         setUpTextView()
         setUpImageView()
         setUpFavoritesCheckBox()
-        setUpFavoritesClickListener()
+        onFavoritesClick()
         setUpAllToolbars()
+        onUrlLinkClick()
     }
 
     private fun setUpAllToolbars() {
@@ -88,7 +91,6 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
             title = articleDetails?.title
             setExpandedTitleColor(context.getColor(android.R.color.white))
             setCollapsedTitleTextColor(context.getColor(R.color.white))
-            setContentScrimColor(context.getColor(R.color.primaryColor))
         }
     }
 
@@ -120,7 +122,7 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
         binding.favoriteCheckBox.isChecked = articleDetails?.favorites ?: false
     }
 
-    private fun setUpFavoritesClickListener() {
+    private fun onFavoritesClick() {
         binding.favoriteCheckBox.apply {
             setOnClickListener { viewModel.updateFavoritesItem(isChecked) }
         }
@@ -134,6 +136,15 @@ class DetailsFragment : BaseFragment(R.layout.fragment_details) {
                 size(ViewSizeResolver(detailsImageView))
             }
         }
+    }
+
+    private fun onUrlLinkClick(){
+        binding.linkTextView.setOnClickListener { openLink() }
+    }
+
+    private fun openLink(){
+        val browserIntent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(articleDetails?.url))
+        startActivity(browserIntent)
     }
 
     private fun backToPreviousScreen() {
