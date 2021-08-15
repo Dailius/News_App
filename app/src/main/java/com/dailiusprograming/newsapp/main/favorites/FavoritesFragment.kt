@@ -3,6 +3,7 @@ package com.dailiusprograming.newsapp.main.favorites
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dailiusprograming.newsapp.R
@@ -14,6 +15,7 @@ import com.dailiusprograming.newsapp.utils.view.viewBinding
 class FavoritesFragment : BaseFragment(R.layout.fragment_favorites) {
     private val binding by viewBinding(FragmentFavoritesBinding::bind)
     private var recyclerAdapter: FavoritesAdapter? = null
+    private val viewModel: FavoritesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +26,13 @@ class FavoritesFragment : BaseFragment(R.layout.fragment_favorites) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpViewModelObserver()
         setUpRecyclerView()
+    }
+
+    private fun setUpViewModelObserver() {
+        viewModel.isLoadingLiveData.observe(viewLifecycleOwner, ::isSwipeRefreshing)
+        viewModel.favoritesList.observe(viewLifecycleOwner, ::submitArticleList)
     }
 
     private fun setUpRecyclerView() {
