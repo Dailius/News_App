@@ -6,20 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:fitsSystemWindows="true"
     tools:context=".main.news.details.DetailsFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primaryColor"
-        android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar">
+        android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/primaryColor"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/primaryColor"
             app:expandedTitleMarginEnd="64dp"
@@ -49,10 +48,10 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:layout_marginTop="24dp"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:layout_marginTop="24dp"
                 android:paddingStart="4dp"
                 android:paddingEnd="8dp"
                 app:layout_collapseMode="pin" />
@@ -91,12 +90,12 @@
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/favoriteCheckBox"
+                style="@style/Theme.NewsApp.FavoritesCheckBox"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="16dp"
                 android:button="@null"
                 android:checked="false"
-                style="@style/Theme.NewsApp.FavoritesCheckBox"
                 android:contentDescription="@string/details_set_favorites"
                 app:layout_constraintBottom_toBottomOf="@+id/AuthorAndDateTextView"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -144,6 +143,8 @@
                 android:layout_marginTop="26dp"
                 android:layout_marginEnd="22dp"
                 android:layout_marginBottom="30dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="top"
                 android:letterSpacing="0.01"
                 android:lineSpacingExtra="10sp"
