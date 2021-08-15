@@ -13,6 +13,7 @@ import com.dailiusprograming.newsapp.main.news.sources.data.model.SourceDomain
 import com.dailiusprograming.newsapp.main.news.sources.data.model.SourceError
 import com.dailiusprograming.newsapp.utils.activity.displayMessageWithRefreshBtn
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
+import com.dailiusprograming.newsapp.utils.fragment.displayFeatureScreen
 import com.dailiusprograming.newsapp.utils.view.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,35 +49,24 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
     private fun submitSourceList(list: List<SourceDomain>) {
         recyclerAdapter?.submitList(list)
         binding.sourcesRecyclerView.adapter = recyclerAdapter
+        setDisplayFeatureScreen(list.isEmpty())
     }
 
     private fun handleErrorDisplay(error: SourceError) {
         val isAdapterListEmpty = recyclerAdapter?.currentList?.isEmpty() == true
-        setScreenDisplayState(isAdapterListEmpty)
+        setDisplayFeatureScreen(isAdapterListEmpty)
 
         (activity as MainActivity).displayMessageWithRefreshBtn(
             error.message ?: getString(R.string.sources_unknown_error)
         ) { viewModel.onRefreshSelected() }
     }
 
-    private fun setScreenDisplayState(isEmptyList: Boolean) {
-        when (isEmptyList) {
-            true -> displayNotificationScreen()
-            false -> displaySourcesScreen()
-        }
-    }
-
-    private fun displayNotificationScreen() {
-        setScreenVisibilityState(View.GONE, View.VISIBLE)
-    }
-
-    private fun displaySourcesScreen() {
-        setScreenVisibilityState(View.VISIBLE, View.GONE)
-    }
-
-    private fun setScreenVisibilityState(stateRecyclerView: Int, stateErrorScreen: Int) {
-        binding.sourcesRecyclerView.visibility = stateRecyclerView
-        binding.sourcesErrorsScreen.visibility = stateErrorScreen
+    private fun setDisplayFeatureScreen(isEmptyList: Boolean) {
+        displayFeatureScreen(
+            isEmptyList,
+            binding.sourcesRecyclerView,
+            binding.sourcesErrorsScreen
+        )
     }
 
     private fun onSourcesRefreshListener() {
