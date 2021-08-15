@@ -23,4 +23,19 @@ class FavoritesViewModel @Inject constructor(
     private var _errorMessage = LiveEvent<ArticleError>()
     val errorMessage = _errorMessage
 
+    fun getFavorites() {
+        favoritesUseCase.getFavorites()
+            .observeOn(scheduler)
+            .subscribe(
+                { result ->
+                    _favoritesList.postValue(result)
+                },
+                { error ->
+                    errorMessage.postValue(
+                        ArticleError(message = error.message)
+                    )
+                }
+            )
+            .addDisposable()
+    }
 }
