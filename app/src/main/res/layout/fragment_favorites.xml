@@ -32,7 +32,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeSourceRefreshLayout"
+        android:id="@+id/swipeFavoritesRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -51,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/empty_note_with_cofee" />
+                android:src="@drawable/empty_note_with_coffee" />
 
             <TextView
                 android:layout_width="wrap_content"
