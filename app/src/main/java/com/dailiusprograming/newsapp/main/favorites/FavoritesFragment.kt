@@ -28,11 +28,23 @@ class FavoritesFragment : BaseFragment(R.layout.fragment_favorites) {
         super.onViewCreated(view, savedInstanceState)
         setUpViewModelObserver()
         setUpRecyclerView()
+        onRefreshListener()
+        viewModel.getFavorites()
     }
 
     private fun setUpViewModelObserver() {
         viewModel.isLoadingLiveData.observe(viewLifecycleOwner, ::isSwipeRefreshing)
         viewModel.favoritesList.observe(viewLifecycleOwner, ::submitArticleList)
+    }
+
+    private fun onRefreshListener() {
+        binding.swipeFavoritesRefreshLayout.setOnRefreshListener {
+            viewModel.getFavorites()
+        }
+    }
+
+    private fun isSwipeRefreshing(isEnabled: Boolean) {
+        binding.swipeFavoritesRefreshLayout.isRefreshing = isEnabled
     }
 
     private fun setUpRecyclerView() {
