@@ -38,7 +38,7 @@ class FavoritesFragment : BaseFragment(R.layout.fragment_favorites) {
             "Content",
             false
         )
-        binding.textView.setOnClickListener { openDetailsFragment(articleDomain) }
+//        binding.textView.setOnClickListener { openDetailsFragment(articleDomain) }
     }
 
     private fun openDetailsFragment(articleDomain: ArticleDomain) {
