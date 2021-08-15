@@ -2,7 +2,9 @@ package com.dailiusprograming.newsapp.utils.storage
 
 import android.content.Context
 import androidx.room.Room
+import com.dailiusprograming.newsapp.main.favorites.data.local.FavoritesDao
 import com.dailiusprograming.newsapp.main.news.articles.data.local.ArticleDao
+import com.dailiusprograming.newsapp.main.news.details.data.local.DetailsDao
 import com.dailiusprograming.newsapp.main.news.sources.data.local.SourceDao
 import dagger.Module
 import dagger.Provides
@@ -28,6 +30,14 @@ object DatabaseModule {
     @Provides
     fun provideArticleDao(mainDatabase: MainDatabase): ArticleDao =
         mainDatabase.getArticleDao()
+
+    @Provides
+    fun provideDetailsDao(mainDatabase: MainDatabase): DetailsDao =
+        mainDatabase.getDetailsDao()
+
+    @Provides
+    fun provideFavoritesDao(mainDatabase: MainDatabase): FavoritesDao =
+        mainDatabase.getFavoritesDao()
 
     private const val DB_NAME = "main.db"
 }
