@@ -1,5 +1,6 @@
 package com.dailiusprograming.newsapp.utils.fragment
 
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -38,6 +39,23 @@ fun ViewPager2.reduceDragSensitivity() {
     touchSlopField.isAccessible = true
     val touchSlop = touchSlopField.get(recyclerView) as Int
     touchSlopField.set(recyclerView, touchSlop * 4)
+}
+
+fun Fragment.displayFeatureScreen(
+    isEmptyList: Boolean,
+    featureScreen: View,
+    notificationScreen: View
+){
+    when (isEmptyList) {
+        true -> {
+            featureScreen.visibility = View.GONE
+            notificationScreen.visibility = View.VISIBLE
+        }
+        false -> {
+            featureScreen.visibility = View.VISIBLE
+            notificationScreen.visibility = View.GONE
+        }
+    }
 }
 
 
