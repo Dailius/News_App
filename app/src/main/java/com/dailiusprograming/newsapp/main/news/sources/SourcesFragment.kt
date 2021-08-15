@@ -26,7 +26,7 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerView()
         setUpViewModelObserver()
-        setUpOnRefreshListener()
+        onSourcesRefreshListener()
         viewModel.onRefreshSelected()
     }
 
@@ -38,7 +38,7 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
 
     private fun setUpRecyclerView() {
         binding.sourcesRecyclerView.apply {
-            recyclerAdapter = SourcesAdapter { source -> setUpOnItemClick(source) }
+            recyclerAdapter = SourcesAdapter(::onSourcesItemClick)
             adapter = recyclerAdapter
             layoutManager = LinearLayoutManager(activity)
             addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
@@ -52,14 +52,14 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
 
     private fun handleErrorDisplay(error: SourceError) {
         val isAdapterListEmpty = recyclerAdapter?.currentList?.isEmpty() == true
-        handleScreenDisplay(isAdapterListEmpty)
+        setScreenDisplayState(isAdapterListEmpty)
 
         (activity as MainActivity).displayMessageWithRefreshBtn(
             error.message ?: getString(R.string.sources_unknown_error)
         ) { viewModel.onRefreshSelected() }
     }
 
-    private fun handleScreenDisplay(isEmptyList: Boolean) {
+    private fun setScreenDisplayState(isEmptyList: Boolean) {
         when (isEmptyList) {
             true -> displayNotificationScreen()
             false -> displaySourcesScreen()
@@ -79,7 +79,7 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
         binding.sourcesErrorsScreen.visibility = stateErrorScreen
     }
 
-    private fun setUpOnRefreshListener() {
+    private fun onSourcesRefreshListener() {
         binding.swipeSourceRefreshLayout.setOnRefreshListener {
             viewModel.onRefreshSelected()
         }
@@ -93,7 +93,7 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
         (parentFragment as NewsPagerContainer).openArticlesFragment(sourceDomain)
     }
 
-    private fun setUpOnItemClick(sourceDomain: SourceDomain) {
+    private fun onSourcesItemClick(sourceDomain: SourceDomain) {
         openArticlesFragment(sourceDomain)
     }
 
