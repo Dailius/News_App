@@ -5,8 +5,10 @@ import android.transition.TransitionInflater
 import android.view.View
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentFavoritesBinding
+import com.dailiusprograming.newsapp.main.news.articles.data.model.ArticleDomain
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import com.dailiusprograming.newsapp.utils.view.viewBinding
+import java.util.*
 
 class FavoritesFragment : BaseFragment(R.layout.fragment_favorites) {
     private val binding by viewBinding(FragmentFavoritesBinding::bind)
@@ -24,12 +26,23 @@ class FavoritesFragment : BaseFragment(R.layout.fragment_favorites) {
     }
 
     private fun onClickTextView() {
-        val args: String = resources.getString(R.string.temporary_favorites)
-        binding.textView.setOnClickListener { openDetailsFragment(args) }
+        val articleDomain = ArticleDomain(
+            "",
+            "sourceId",
+            "source Name",
+            "Author",
+            "Title",
+            "Description",
+            "ImageUrl",
+            Date(),
+            "Content",
+            false
+        )
+        binding.textView.setOnClickListener { openDetailsFragment(articleDomain) }
     }
 
-    private fun openDetailsFragment(args: String) {
-        (parentFragment as FavoritesPagerContainer).openDetailsFragment(args)
+    private fun openDetailsFragment(articleDomain: ArticleDomain) {
+        (parentFragment as FavoritesPagerContainer).openDetailsFragment(articleDomain)
     }
 
     companion object {

@@ -12,7 +12,7 @@ data class SourceDomain(
     val category: String,
     val language: String,
     val country: String
-): Parcelable {
+) : Parcelable {
     fun toEntity() = SourceEntity(
         id = id,
         name = name,
