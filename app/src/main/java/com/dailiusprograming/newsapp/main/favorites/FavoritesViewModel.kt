@@ -16,9 +16,11 @@ class FavoritesViewModel @Inject constructor(
     private val favoritesUseCase: FetchFavoritesUseCase,
     @Main private val scheduler: Scheduler
 ) : BaseViewModel() {
-
     private var _favoritesList = MutableLiveData<List<ArticleDomain>>()
     val favoritesList = _favoritesList
+
+    private var _isLoadingLiveData = MutableLiveData(false)
+    val isLoadingLiveData = _isLoadingLiveData
 
     private var _errorMessage = LiveEvent<ArticleError>()
     val errorMessage = _errorMessage
@@ -29,11 +31,13 @@ class FavoritesViewModel @Inject constructor(
             .subscribe(
                 { result ->
                     _favoritesList.postValue(result)
+                    _isLoadingLiveData.postValue(false)
                 },
                 { error ->
-                    errorMessage.postValue(
+                    _errorMessage.postValue(
                         ArticleError(message = error.message)
                     )
+                    _isLoadingLiveData.postValue(false)
                 }
             )
             .addDisposable()
