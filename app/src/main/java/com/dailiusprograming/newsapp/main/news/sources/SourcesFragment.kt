@@ -65,7 +65,7 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
         displayFeatureScreen(
             isEmptyList,
             binding.sourcesRecyclerView,
-            binding.sourcesErrorsScreen
+            binding.sourcesNotificationScreen
         )
     }
 

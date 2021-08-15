@@ -16,6 +16,7 @@ import com.dailiusprograming.newsapp.main.news.articles.utils.UiFilter
 import com.dailiusprograming.newsapp.main.news.sources.data.model.SourceDomain
 import com.dailiusprograming.newsapp.utils.activity.displayMessageWithRefreshBtn
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
+import com.dailiusprograming.newsapp.utils.fragment.displayFeatureScreen
 import com.dailiusprograming.newsapp.utils.view.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,8 +41,8 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
         viewModel.onSourceIdLoaded(sourceDomain?.id)
         setUpRecyclerView()
         setUpToolBar()
-        setUpChipButtonsOnClickListener()
-        setUpOnRefreshListener()
+        onChipButtonsClickListener()
+        onArticlesRefreshListener()
         viewModel.onRefreshSelected()
     }
 
@@ -51,7 +52,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
         viewModel.errorMessage.observe(viewLifecycleOwner, ::handleErrorDisplay)
     }
 
-    private fun setUpChipButtonsOnClickListener() {
+    private fun onChipButtonsClickListener() {
         binding.chipGroup.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 binding.popularTodayChip.id ->
@@ -69,7 +70,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
         }
     }
 
-    private fun setUpOnRefreshListener() {
+    private fun onArticlesRefreshListener() {
         binding.swipeArticleRefreshLayout.setOnRefreshListener {
             viewModel.onRefreshSelected()
         }
@@ -81,31 +82,19 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
 
     private fun handleErrorDisplay(error: ArticleError) {
         val isAdapterListEmpty = recyclerAdapter?.currentList?.isEmpty() == true
-        handleScreenDisplay(isAdapterListEmpty)
+        setDisplayFeatureScreen(isAdapterListEmpty)
 
         (activity as MainActivity).displayMessageWithRefreshBtn(
             error.message ?: getString(R.string.sources_unknown_error)
         ) { viewModel.onRefreshSelected() }
     }
 
-    private fun handleScreenDisplay(isEmptyList: Boolean) {
-        when (isEmptyList) {
-            true -> displayNotificationScreen()
-            false -> displayArticlesScreen()
-        }
-    }
-
-    private fun displayNotificationScreen() {
-        setScreenVisibilityState(View.GONE, View.VISIBLE)
-    }
-
-    private fun displayArticlesScreen() {
-        setScreenVisibilityState(View.VISIBLE, View.GONE)
-    }
-
-    private fun setScreenVisibilityState(stateRecyclerView: Int, stateErrorScreen: Int) {
-        binding.articleRecyclerView.visibility = stateRecyclerView
-        binding.articlesNotificationScreen.visibility = stateErrorScreen
+    private fun setDisplayFeatureScreen(isEmptyList: Boolean) {
+        displayFeatureScreen(
+            isEmptyList,
+            binding.articleRecyclerView,
+            binding.articlesNotificationScreen
+        )
     }
 
     private fun setUpToolBar() {
@@ -120,7 +109,7 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
 
     private fun setUpRecyclerView() {
         binding.articleRecyclerView.apply {
-            recyclerAdapter = ArticlesAdapter { article -> setUpOnItemClick(article) }
+            recyclerAdapter = ArticlesAdapter { article -> onArticlesItemClick(article) }
             adapter = recyclerAdapter
             layoutManager = LinearLayoutManager(activity)
             addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
@@ -130,10 +119,10 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
     private fun submitArticleList(list: List<ArticleDomain>) {
         recyclerAdapter?.submitList(list)
         binding.articleRecyclerView.adapter = recyclerAdapter
-        handleScreenDisplay(list.isEmpty())
+        setDisplayFeatureScreen(list.isEmpty())
     }
 
-    private fun setUpOnItemClick(articleDomain: ArticleDomain) {
+    private fun onArticlesItemClick(articleDomain: ArticleDomain) {
         openDetailsFragment(articleDomain)
     }
 
