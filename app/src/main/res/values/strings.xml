@@ -16,7 +16,7 @@
     <string name="temporary_about">ABOUT</string>
     <string name="temporary_transfer_args">Transferred argument from %s to page %s</string>
 
-    <string name="news_error_screen_message">This page didn\'t load the content correctly</string>
+    <string name="news_notification_screen_message">This page didn\'t load the content correctly</string>
 
     <string name="sources_feature">Sources</string>
     <string name="sources_list_item_title">Sources title text</string>
@@ -41,7 +41,7 @@
     <string name="details_transition">DetailsCollapsingToolbarTransition</string>
 
     <string name="favorites_feature">Favorites</string>
-    <string name="favorites_error_screen_message">You don\'t have any favorite article</string>
+    <string name="favorites_notification_screen_message">You don\'t have any favorite article</string>
 
     <string name="about_feature">About</string>
 
