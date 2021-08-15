@@ -36,14 +36,18 @@ class ArticlesFragment : BaseFragment(R.layout.fragment_articles) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getParcelableArgs()
         setUpViewModelObserver()
-        sourceDomain = arguments?.getParcelable(SOURCE_KEY)
-        viewModel.onSourceIdLoaded(sourceDomain?.id)
         setUpRecyclerView()
         setUpToolBar()
         onChipButtonsClickListener()
         onArticlesRefreshListener()
         viewModel.onRefreshSelected()
+    }
+
+    private fun getParcelableArgs() {
+        sourceDomain = arguments?.getParcelable(SOURCE_KEY)
+        viewModel.onSourceIdLoaded(sourceDomain?.id)
     }
 
     private fun setUpViewModelObserver() {
