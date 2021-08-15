@@ -8,10 +8,15 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dailiusprograming.newsapp.R
 import com.dailiusprograming.newsapp.databinding.FragmentFavoritesBinding
+import com.dailiusprograming.newsapp.main.MainActivity
 import com.dailiusprograming.newsapp.main.news.articles.data.model.ArticleDomain
+import com.dailiusprograming.newsapp.main.news.articles.data.model.ArticleError
+import com.dailiusprograming.newsapp.utils.activity.displayMessage
 import com.dailiusprograming.newsapp.utils.fragment.BaseFragment
 import com.dailiusprograming.newsapp.utils.view.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FavoritesFragment : BaseFragment(R.layout.fragment_favorites) {
     private val binding by viewBinding(FragmentFavoritesBinding::bind)
     private var recyclerAdapter: FavoritesAdapter? = null
@@ -35,6 +40,7 @@ class FavoritesFragment : BaseFragment(R.layout.fragment_favorites) {
     private fun setUpViewModelObserver() {
         viewModel.isLoadingLiveData.observe(viewLifecycleOwner, ::isSwipeRefreshing)
         viewModel.favoritesList.observe(viewLifecycleOwner, ::submitArticleList)
+        viewModel.errorMessage.observe(viewLifecycleOwner, ::handleErrorDisplay)
     }
 
     private fun onRefreshListener() {
@@ -45,6 +51,35 @@ class FavoritesFragment : BaseFragment(R.layout.fragment_favorites) {
 
     private fun isSwipeRefreshing(isEnabled: Boolean) {
         binding.swipeFavoritesRefreshLayout.isRefreshing = isEnabled
+    }
+
+    private fun handleErrorDisplay(error: ArticleError) {
+        val isAdapterListEmpty = recyclerAdapter?.currentList?.isEmpty() == true
+        handleScreenDisplay(isAdapterListEmpty)
+
+        (activity as MainActivity).displayMessage(
+            error.message ?: getString(R.string.sources_unknown_error)
+        )
+    }
+
+    private fun handleScreenDisplay(isEmptyList: Boolean) {
+        when (isEmptyList) {
+            true -> displayNotificationScreen()
+            false -> displayArticlesScreen()
+        }
+    }
+
+    private fun displayNotificationScreen() {
+        setScreenVisibilityState(View.GONE, View.VISIBLE)
+    }
+
+    private fun displayArticlesScreen() {
+        setScreenVisibilityState(View.VISIBLE, View.GONE)
+    }
+
+    private fun setScreenVisibilityState(stateRecyclerView: Int, stateErrorScreen: Int) {
+        binding.favoritesRecyclerView.visibility = stateRecyclerView
+        binding.favoritesNotificationScreen.visibility = stateErrorScreen
     }
 
     private fun setUpRecyclerView() {
@@ -59,6 +94,7 @@ class FavoritesFragment : BaseFragment(R.layout.fragment_favorites) {
     private fun submitArticleList(list: List<ArticleDomain>) {
         recyclerAdapter?.submitList(list)
         binding.favoritesRecyclerView.adapter = recyclerAdapter
+        handleScreenDisplay(list.isEmpty())
     }
 
     private fun onFavoritesItemClick(articleDomain: ArticleDomain) {
