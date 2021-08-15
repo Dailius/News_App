@@ -51,16 +51,18 @@ class SourcesFragment : BaseFragment(R.layout.fragment_sources) {
     }
 
     private fun handleErrorDisplay(error: SourceError) {
-        handleScreenDisplay()
+        val isAdapterListEmpty = recyclerAdapter?.currentList?.isEmpty() == true
+        handleScreenDisplay(isAdapterListEmpty)
+
         (activity as MainActivity).displayMessageWithRefreshBtn(
             error.message ?: getString(R.string.sources_unknown_error)
         ) { viewModel.onRefreshSelected() }
     }
 
-    private fun handleScreenDisplay() {
-        when (recyclerAdapter?.currentList?.size) {
-            0 -> displayNotificationScreen()
-            else -> displaySourcesScreen()
+    private fun handleScreenDisplay(isEmptyList: Boolean) {
+        when (isEmptyList) {
+            true -> displayNotificationScreen()
+            false -> displaySourcesScreen()
         }
     }
 
