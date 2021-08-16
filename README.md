@@ -1,7 +1,9 @@
-# API KEY require:
-Require API KEY in order to run this app. Key is available in https://newsapi.org/ . Inside base directory of project create new file named "key.properties" that contains following line: API_KEY = "paste your API KEY here".
+# News APP
+## API KEY require:
+Require API KEY in order to run this app. Key is available in https://newsapi.org/ .
+Inside base directory of project create new file named "key.properties" that contains following line: API_KEY = "paste your API KEY here".
 
-# Technical description:
+## Technical description:
 * [MVVM pattern](https://developer.android.com/jetpack/guide#overview) used for app architecture.
 * [DDD pattern](https://proandroiddev.com/the-real-repository-pattern-in-android-efba8662b754) used for repository.
 * RxJava3 is used for data communication between architectural parts.
@@ -13,7 +15,7 @@ Require API KEY in order to run this app. Key is available in https://newsapi.or
 * Multi Back Stacks solution
 * and many more...
 
-# Features:
+## Features:
 *	Splash scree
 *	Tutorial scree
 *	Main screen with ViewPager2 and bottom navigation
@@ -25,10 +27,8 @@ Require API KEY in order to run this app. Key is available in https://newsapi.or
 *	Animation between fragments transition
 *	Error message handling
 
-# Screens:
-![screen](splash_screen.png)
-![screen](tutorial_screen2.png)
-![screen](tutorial_screen3.png)
+## Screens:
+<img src="pictures\sources_screen.png">
 
 ![screen](sources_screen.png)
 ![screen](articles_screen.png)
