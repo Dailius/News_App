@@ -31,11 +31,6 @@ Inside base directory of project create new file named "key.properties" that con
 
 <img src="pictures\splash_screen.png" width="200"> <img src="pictures\tutorial_screen2.png" width="200"> <img src="pictures\tutorial_screen3.png" width="200">
 
-![screen](sources_screen.png)
-![screen](articles_screen.png)
-![screen](article_details_screen.png)
+<img src="pictures\sources_screen.png" width="200"> <img src="pictures\articles_screen.png" width="200"> <img src="pictures\article_details_screen.png" width="200">
 
-![screen](favorites_screen_empty.png)
-![screen](favorites_screen.png)
-![screen](about_screen.png)
-![screen](notification_screen.png)
+<img src="pictures\favorites_screen_empty.png" width="200"> <img src="pictures\favorites_screen.png" width="200"> <img src="pictures\about_screen.png" width="200"> <img src="pictures\notification_screen.png" width="200">
