@@ -25,3 +25,17 @@ Require API KEY in order to run this app. Key is available in https://newsapi.or
 *	Animation between fragments transition
 *	Error message handling
 
+# Screens:
+![screen](splash_screen.png)
+![screen](tutorial_screen2.png)
+![screen](tutorial_screen3.png)
+
+![screen](notification_screen.png)
+
+![screen](sources_screen.png)
+![screen](articles_screen.png)
+![screen](article_details_screen.png)
+
+![screen](favorites_screen_empty.png)
+![screen](favorites_screen.png)
+![screen](about_screen.png)
