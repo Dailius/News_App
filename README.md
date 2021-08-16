@@ -27,8 +27,9 @@ Inside base directory of project create new file named "key.properties" that con
 *	Animation between fragments transition
 *	Error message handling
 
-## Screens:
-<img src="pictures\sources_screen.png">
+## Screenshots:
+
+<img src="pictures\splash_screen.png" width="200"><img src="pictures\tutorial_screen2.png" width="200"><img src="pictures\tutorial_screen3.png" width="200">
 
 ![screen](sources_screen.png)
 ![screen](articles_screen.png)
